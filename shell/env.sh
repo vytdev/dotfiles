@@ -1,4 +1,4 @@
-# Setup the environment.
+# Setup shell and env vars
 
 set +e
 
@@ -6,8 +6,8 @@ set +e
 export LANG=en_US.UTF-8
 
 # paths
-export PATH="$DOTFILES/bin:$HOME/bin:$HOME/.local/bin:$PATH"
-if [ -z "$MANPATH" ] ; then
+export PATH="$DOTFILES/bin:$HOME/.local/bin:$PATH"
+if [ -z "$MANPATH" ]; then
   export MANPATH="$HOME/.local/man:$HOME/.local/share/man:$(manpath)"
 fi
 
@@ -32,5 +32,5 @@ export GIT_EDITOR=nvim
 export GIT_PAGER=less
 
 # other opts
-export LESS="-R"  # show ansi colours in `less`
+export LESS="-R"  # show colors in `less`
 eval "$(dircolors -b)"

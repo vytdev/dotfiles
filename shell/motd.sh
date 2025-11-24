@@ -1,16 +1,21 @@
 # Message-Of-The-Day
 #
 
-# Respect .hushlogin file.
+# respect .hushlogin file
 if [ ! -e "$HOME/.hushlogin" ]; then
 
-  # Check support for ANSI colours.
-  case "$TERM" in xterm-*color)
+  # detect support for ansi colors
+  case "$TERM" in
+    *color*|xterm*|screen*|tmux*|vt100*) colorize=yes ;;
+    *) [ -n "$COLORTERM" ] && colorize=yes ;;
+  esac
 
-    # A green-colored block
+  if [ -n "$colorize" ]; then
+
+    # a green-colored block
     b='\e[38;5;10m\e[48;5;10m..\e[0m'
 
-    # The message.
+    # the colored message
     echo
     echo -e "                    \e[1mHi, \e[32m$(whoami)\e[39m!\e[0m"
     echo
@@ -27,7 +32,7 @@ if [ ! -e "$HOME/.hushlogin" ]; then
 
     unset b
 
-    # Color palette.
+    # print color palette
     cnt=0
     while [ "$cnt" -lt 16 ]; do
       [ $((cnt % 8)) -eq 0 ] && printf "\n                    "
@@ -37,6 +42,10 @@ if [ ! -e "$HOME/.hushlogin" ]; then
     printf "\n\n"
     unset cnt
 
-  # Fallback to colorless text
-  ;; *) cat "$DOTFILES/shell/motd";; esac
+  # fallback to colorless text
+  else
+    cat "$DOTFILES/shell/motd"
+  fi
+
+  unset colorize
 fi

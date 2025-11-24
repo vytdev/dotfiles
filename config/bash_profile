@@ -1,3 +1,6 @@
 # Typically, this repo is at $HOME/dotfiles
 [ -z "$DOTFILES" ] && export DOTFILES="$HOME/dotfiles"
-. "$DOTFILES/shell/profile.sh"
+. "$DOTFILES/shell/motd.sh"
+. "$DOTFILES/shell/env.sh"
+. "$DOTFILES/shell/prompt.sh"
+. "$DOTFILES/shell/alias.sh"
