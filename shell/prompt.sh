@@ -1,7 +1,6 @@
 # Setup custom prompt string.
 #
 
-
 # Check ANSI colour support.
 case "$TERM" in
   xterm-*color ) colorize=yes ;;

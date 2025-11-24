@@ -1,11 +1,17 @@
 #!/bin/sh
 
-base="$HOME"
 dotfiles="$(realpath "$(dirname "$0")")"
-[ -n "$1" ] && base=$(realpath "$1")
 
-mkdir -p "$base/.config"
+# $1: src from this repo
+# $2: dest relative to user's home
+make_link() {
+  trg="$HOME/$2"
+  mkdir -p "$(dirname "$trg")"
+  rm -rf "$trg"
+  ln -s "$dotfiles/$1" "$trg"
+}
 
-ln -s "$dotfiles/.bashrc"     "$base/.bashrc"
-ln -s "$dotfiles/.gitconfig"  "$base/.gitconfig"
-ln -s "$dotfiles/nvim" 	      "$base/.config/nvim"
+make_link 'config/gitconfig'    '.gitconfig'
+make_link 'config/bashrc'       '.bashrc'
+make_link 'config/bash_profile' '.bash_profile'
+make_link 'nvim'                '.config/nvim'

@@ -1,8 +1,2 @@
 
-  A set of custom functions. Just put the following into
-  your `~/.profile` or `~/.bashrc`, and you're ready to
-  go!
-
-    export DOTFILES=/path/to/dotfiles
-    . $DOTFILES/shell/init.sh
-
+  Dev customization. Just do: ./setup.sh

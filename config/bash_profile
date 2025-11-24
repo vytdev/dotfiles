@@ -1,0 +1,3 @@
+# Typically, this repo is at $HOME/dotfiles
+[ -z "$DOTFILES" ] && export DOTFILES="$HOME/dotfiles"
+. "$DOTFILES/shell/profile.sh"

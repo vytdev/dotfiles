@@ -6,7 +6,7 @@ set +e
 export LANG=en_US.UTF-8
 
 # paths
-export PATH="$HOME/bin:$HOME/.local/bin:$PATH"
+export PATH="$DOTFILES/bin:$HOME/bin:$HOME/.local/bin:$PATH"
 if [ -z "$MANPATH" ] ; then
   export MANPATH="$HOME/.local/man:$HOME/.local/share/man:$(manpath)"
 fi
@@ -34,11 +34,3 @@ export GIT_PAGER=less
 # other opts
 export LESS="-R"  # show ansi colours in `less`
 eval "$(dircolors -b)"
-
-# starting dir
-export WDIR="$HOME/"
-[ ! -d "$WDIR" ] && mkdir "$WDIR"
-shopt -q login_shell && cd "$WDIR"
-
-# completions
-#. /etc/bash_completion.d/global-python-argcomplete

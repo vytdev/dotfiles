@@ -38,5 +38,5 @@ if [ ! -e "$HOME/.hushlogin" ]; then
     unset cnt
 
   # Fallback to colorless text
-  ;; *) envsubst < "$CUSTOMS/init.d/motd";; esac
+  ;; *) cat "$DOTFILES/shell/motd";; esac
 fi
