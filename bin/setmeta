@@ -76,6 +76,7 @@ except KeyboardInterrupt:
 # set metadata
 for fname in files:
     print('\n=== METADATA')
+    print('Metadata for: ' + fname)
     change_meta(ask_meta(), fname)
     subprocess.run(["rsgain", "custom", "-s", "i", fname])
     print('Set the lyrics and cover art separately.')
