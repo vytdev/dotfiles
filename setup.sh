@@ -39,10 +39,21 @@ printf "is this correct? [y]: "
 ask_yes || exit
 echo
 
+# copy necessary files
 make_link 'config/gitconfig'    '.gitconfig'
 make_link 'config/bashrc'       '.bashrc'
 make_link 'config/bash_profile' '.bash_profile'
 make_link 'nvim'                '.config/nvim'
-
 echo
+
+# py-venv (for quick scripting)
+if command -v python >/dev/null 2>&1; then
+  printf "setup a global py-venv? [y]: "
+  if ask_yes; then
+    python -m venv "$trgdir/py-venv"
+    echo "global py-venv setup done"
+  fi
+  echo
+fi
+
 echo "setup done!"

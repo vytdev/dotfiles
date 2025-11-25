@@ -1,0 +1,81 @@
+#!/bin/env python
+from yt_dlp import YoutubeDL
+from mutagen import id3
+import subprocess
+
+
+def dl_track(url, fname='downloaded.%(ext)s'):
+    """
+    Download audio track.
+    """
+    ydl_opts = {
+        'format': 'bestaudio/best',
+        'outtmpl': fname,
+        'postprocessors': [{
+            'key': 'FFmpegExtractAudio',
+            'preferredcodec': 'mp3',
+            'preferredquality': '0'
+        }]
+    }
+
+    with YoutubeDL(ydl_opts) as ydl:
+        ydl.download([url])
+
+def change_meta(meta, fname='downloaded.mp3'):
+    """
+    Change the metadata of an mp3 file.
+    """
+    audio = id3.ID3(fname)
+
+    audio.add(id3.TIT2(encoding=3, text=[meta['title']]))
+    audio.add(id3.TALB(encoding=3, text=[meta['album']]))
+    audio.add(id3.TPE1(encoding=3, text=[meta['artist']]))
+    audio.add(id3.TPE2(encoding=3, text=[meta['albumartist']]))
+    audio.add(id3.TDRC(encoding=3, text=meta['year']))
+    audio.add(id3.TRCK(encoding=3, text=meta['trackno']))
+
+    audio.save()
+
+def ask_meta():
+    return {
+        'title':        input('          title: '),
+        'album':        input('          album: '),
+        'artist':       input('         artist: '),
+        'albumartist':  input('    albumartist: '),
+        'year':         input('           year: '),
+        'trackno':      input('        trackno: '),
+    }
+
+print('Archiving dialog.')
+print('At any point, press CTRL+C to abort.')
+
+files = []
+
+
+# download tracks
+try:
+    while True:
+        print('\n=== DOWNLOAD')
+        url =   input('Link: ')
+        fname = input('Filename: ')
+        while True:
+            try:
+                dl_track(url, fname + '.%(ext)s')
+                files.append(fname + '.mp3')
+                print('Successfully fetched: ' + fname + '.mp3')
+                break
+            except:
+                ans = input('Download failed. Retry? [y]: ')
+                if ans[0] != 'y' and ans[0] != 'Y':
+                    print('Skipped: ' + fname + '.mp3')
+                    break
+except KeyboardInterrupt:
+    print('Download phase done!')
+
+
+# set metadata
+for fname in files:
+    print('\n=== METADATA')
+    change_meta(ask_meta(), fname)
+    subprocess.run(["rsgain", "custom", "-s", "i", fname])
+    print('Set the lyrics and cover art separately.')

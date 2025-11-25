@@ -63,7 +63,10 @@ return {
 
       -- configure diagnostics
       vim.diagnostic.config({
-        virtual_text = false,
+        virtual_text = {
+          prefix = '●',
+          spacing = 2,
+        },
         signs = {
           text = {
             [vim.diagnostic.severity.ERROR] = '󰅚 ',
