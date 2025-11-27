@@ -43,7 +43,16 @@ echo
 make_link 'config/gitconfig'    '.gitconfig'
 make_link 'config/bashrc'       '.bashrc'
 make_link 'config/bash_profile' '.bash_profile'
-make_link 'nvim'                '.config/nvim'
+echo
+
+# nvim config (imma use nvchad)
+printf "update nvim config? [y]: "
+if ask_yes; then
+  rm -rf "$dotfiles/.config/nvim"
+  rm -rf "$dotfiles/.local/share/nvim"
+  rm -rf "$dotfiles/.local/state/nvim"
+  make_link 'nvim' '.config/nvim'
+fi
 echo
 
 # py-venv (for quick scripting)
