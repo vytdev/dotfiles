@@ -11,8 +11,8 @@ alias ...='cd ../..'
 alias ....='cd ../../..'
 
 # ls aliases
-alias ll='ls -alFhv --group-directories-first'
-alias la='ls -lFhv --group-directories-first'
+alias lk='ls -alFhv --group-directories-first'
+alias ll='ls -lFhv --group-directories-first'
 alias lt='ls -trlFh'
 
 # hot git cmds

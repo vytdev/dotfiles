@@ -48,9 +48,9 @@ echo
 # nvim config (imma use nvchad)
 printf "update nvim config? [y]: "
 if ask_yes; then
-  rm -rf "$dotfiles/.config/nvim"
-  rm -rf "$dotfiles/.local/share/nvim"
-  rm -rf "$dotfiles/.local/state/nvim"
+  rm -rf "$trgdir/.config/nvim"
+  rm -rf "$trgdir/.local/share/nvim"
+  rm -rf "$trgdir/.local/state/nvim"
   make_link 'nvim' '.config/nvim'
 fi
 echo
