@@ -6,11 +6,11 @@
 local M = {}
 
 M.base46 = {
-	theme = "onedark",
+	theme = 'onedark',
 
 	-- hl_override = {
 	-- 	Comment = { italic = true },
-	-- 	["@comment"] = { italic = true },
+	-- 	['@comment'] = { italic = true },
 	-- },
 }
 
@@ -23,9 +23,9 @@ M.base46 = {
 
  M.ui = {
   statusline = {
-    theme = "default",
-    separator_style = "default",
-    order = { "mode", "file", "git", "%=", "lsp_msg", "cursor", },
+    theme = 'default',
+    separator_style = 'default',
+    order = { 'mode', 'file', 'git', '%=', 'lsp_msg', 'cursor', },
   },
 }
 

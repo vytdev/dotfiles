@@ -32,5 +32,5 @@ export GIT_EDITOR=nvim
 export GIT_PAGER=less
 
 # other opts
-export LESS="-R"  # show colors in `less`
+export LESS='-R'  # show colors in `less`
 eval "$(dircolors -b)"

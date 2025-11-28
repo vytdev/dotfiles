@@ -1,11 +1,6 @@
-require "nvchad.options"
-
--- add yours here!
+require 'nvchad.options'
 
 local o = vim.o
-
-o.mouse = 'a'
-o.clipboard = 'unnamedplus'
 
 o.shell = os.getenv('SHELL') or '/bin/bash'
 

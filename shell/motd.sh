@@ -35,11 +35,11 @@ if [ ! -e "$HOME/.hushlogin" ]; then
     # print color palette
     cnt=0
     while [ "$cnt" -lt 16 ]; do
-      [ $((cnt % 8)) -eq 0 ] && printf "\n                    "
-      printf "\e[38;5;%sm\e[48;5;%sm..\e[0m" "$cnt" "$cnt"
+      [ $((cnt % 8)) -eq 0 ] && printf '\n                    '
+      printf '\e[38;5;%sm\e[48;5;%sm..\e[0m' "$cnt" "$cnt"
       cnt=$((cnt + 1))
     done
-    printf "\n\n"
+    printf '\n\n'
     unset cnt
 
   # fallback to colorless text

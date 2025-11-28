@@ -21,5 +21,6 @@ alias gg='git log'
 alias gd='git diff'
 
 # other aliases
+alias vim='nvim'
 alias m="eval \"\$(history | tac | sed 's/^[0-9 ]*//' | fzf)\""
 alias py-venv='. ~/py-venv/bin/activate'  # global py-venv for scripts

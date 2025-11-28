@@ -1,3 +1,10 @@
 
-  Dev customization. Just run: ./setup.sh
+  Dev setup customization. Simply type:
+
+    ./setup.sh
+
+  That will run a setup dialog.
+
+  NvChad looks neat, is more convinient, and is faster than my previous
+  config. I'm too lazy to maintain my own.
 
