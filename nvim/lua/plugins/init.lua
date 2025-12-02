@@ -5,18 +5,11 @@ return {
 
   -- colorscheme
   {
-    'navarasu/onedark.nvim',
+    'catppuccin/nvim',
+    name = "catppuccin",
     priority = 1000,
     lazy = false,
-    config = function()
-      require'onedark'.setup{
-        style = 'warmer',
-        code_style = {
-          comments = 'none',
-        },
-      }
-      require'onedark'.load()
-    end,
+    config = function() require'configs.colorscheme' end,
   },
 
   -- treesitter
