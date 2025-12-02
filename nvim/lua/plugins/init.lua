@@ -88,8 +88,8 @@ return {
 
   -- color picker
   {
-    "uga-rosa/ccc.nvim",
-    event = 'VeryLazy',
+    'uga-rosa/ccc.nvim',
+    event = { 'BufReadPre', 'BufNewFile', },
     opts = {
       highlighter = {
         auto_enable = true,
