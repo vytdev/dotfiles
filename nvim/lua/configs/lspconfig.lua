@@ -40,19 +40,6 @@ M.lsp_setup = function()
     severity_sort = true,
   })
 
-  -- remove bg in virtual text
-  local groups = {
-    'DiagnosticVirtualTextError',
-    'DiagnosticVirtualTextWarn',
-    'DiagnosticVirtualTextInfo',
-    'DiagnosticVirtualTextHint',
-  }
-
-  for _, group in ipairs(groups) do
-    local hl = vim.api.nvim_get_hl(0, { name = group })
-    vim.api.nvim_set_hl(0, group, { fg = hl.fg, bg = 'none' })
-  end
-
   -- lsp capabilities (i.e. auto completion)
   local capabilities = vim.lsp.protocol.make_client_capabilities()
   capabilities = require('cmp_nvim_lsp').default_capabilities(capabilities)

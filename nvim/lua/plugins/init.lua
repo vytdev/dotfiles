@@ -92,5 +92,12 @@ return {
     event = 'BufReadPost',
     cmd = { 'BufferLineCyclePrev', 'BufferLineCycleNext', },
     config = function() require'configs.bufferline' end,
-  }
+  },
+
+  -- custom status line
+  {
+    'nvim-lualine/lualine.nvim',
+    event = 'VeryLazy',
+    config = function() require'configs.lualine' end,
+  },
 }

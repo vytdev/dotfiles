@@ -19,7 +19,7 @@ o.splitkeep = 'screen'
 -- gutter
 o.number = true
 o.relativenumber = true
-o.numberwidth = 3
+o.numberwidth = 5
 o.signcolumn = 'yes'
 
 -- other highlights
