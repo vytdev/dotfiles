@@ -11,11 +11,13 @@ map('i', '<c-e>', '<end>',          { desc = 'move end of line' })
 map('n', '<leader>/', 'gcc',        { desc = 'toggle comment', remap = true })
 map('v', '<leader>/', 'gc',         { desc = 'toggle comment', remap = true })
 
+-- window nav
 map('n', '<c-h>', '<c-w>h',         { desc = 'switch window left' })
 map('n', '<c-j>', '<c-w>j',         { desc = 'switch window down' })
 map('n', '<c-k>', '<c-w>k',         { desc = 'switch window up' })
 map('n', '<c-l>', '<c-w>l',         { desc = 'switch window right' })
 
+-- buffer nav
 map('n', '<tab>', '<cmd>BufferLineCycleNext<cr>', { desc = 'buffer next' })
 map('n', '<s-tab>', '<cmd>BufferLineCyclePrev<cr>', { desc = 'buffer previous' })
 map('n', '<leader>x', function()
@@ -35,6 +37,10 @@ map('n', '<leader>n', '<cmd>NvimTreeFocus<cr>',  { desc = 'nvim-tree focus' })
 -- terminal
 map('t', '<c-x>', '<c-\\><c-n>', { desc = 'terminal escape terminal mode' })
 map({ 'n', 't' }, '<a-t>', require'terminal'.toggle, { desc = 'terminal toggle terminal' })
+
+-- color picker
+map('n', '<leader>cp', '<cmd>CccPick<cr>',     { desc = 'color pick' })
+map('n', '<leader>cc', '<cmd>CccConvert<cr>',  { desc = 'color convert' })
 
 -- telescope
 map('n', '<leader>fw', '<cmd>Telescope live_grep<CR>', { desc = 'telescope live grep' })

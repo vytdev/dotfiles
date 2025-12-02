@@ -3,8 +3,6 @@
   best nvim starter kit. Look at https://nvchad.com
 
   TODO:
-  - mason-org/mason-lspconfig
-  - eero-lehtinen/oklch-color-picker.nvim
   - ui improvements
 
   note: keep it fast

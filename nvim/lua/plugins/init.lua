@@ -86,6 +86,18 @@ return {
     },
   },
 
+  -- color picker
+  {
+    "uga-rosa/ccc.nvim",
+    event = 'VeryLazy',
+    opts = {
+      highlighter = {
+        auto_enable = true,
+        lsp = true,
+      },
+    },
+  },
+
   -- bufferline
   {
     'akinsho/bufferline.nvim',
@@ -101,7 +113,7 @@ return {
     config = function() require'configs.lualine' end,
   },
 
-  -- neo-tree
+  -- nvim-tree
   {
     'nvim-tree/nvim-tree.lua',
     cmd = { 'NvimTreeToggle', 'NvimTreeFocus', },
