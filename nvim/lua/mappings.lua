@@ -18,11 +18,19 @@ map('n', '<c-l>', '<c-w>l',         { desc = 'switch window right' })
 
 map('n', '<tab>', '<cmd>BufferLineCycleNext<cr>', { desc = 'buffer next' })
 map('n', '<s-tab>', '<cmd>BufferLineCyclePrev<cr>', { desc = 'buffer previous' })
-map('n', '<leader>x', '<cmd>bdelete<cr>', { desc = 'buffer close' })
+map('n', '<leader>x', function()
+  local bufnr = vim.api.nvim_get_current_buf()
+  if vim.fn.len(vim.fn.getbufinfo({ buflisted = 1 })) == 1 then
+    vim.cmd('enew')
+  else
+    vim.cmd('BufferLineCyclePrev')
+  end
+  vim.cmd('bd ' .. bufnr)
+end, { desc = 'buffer close' })
 
--- nvimtree
-map('n', '<c-n>',     '<cmd>NvimTreeToggle<cr>', { desc = 'nvim tree toggle' })
-map('n', '<leader>n', '<cmd>NvimTreeToggle<cr>', { desc = 'nvim tree focus' })
+-- nvim-tree
+map('n', '<c-n>',     '<cmd>NvimTreeToggle<cr>', { desc = 'nvim-tree toggle' })
+map('n', '<leader>n', '<cmd>NvimTreeFocus<cr>',  { desc = 'nvim-tree focus' })
 
 -- terminal
 map('t', '<c-x>', '<c-\\><c-n>', { desc = 'terminal escape terminal mode' })

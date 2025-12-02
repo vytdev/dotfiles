@@ -3,7 +3,7 @@ require'lualine'.setup{
     globalstatus = true,
     component_separators = '',
     section_separators = '',
-    ignore_focus = { 'TelescopePrompt' }
+    ignore_focus = { 'TelescopePrompt', 'NvimTree', },
   },
 
   sections = {
@@ -29,7 +29,6 @@ require'lualine'.setup{
           readonly = '󰌆 ',
           unnamed = '[No Name]',
         },
-        padding = { left = 0, right = 1, },
       },
       {
         'diagnostics',

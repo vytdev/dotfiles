@@ -100,4 +100,11 @@ return {
     event = 'VeryLazy',
     config = function() require'configs.lualine' end,
   },
+
+  -- neo-tree
+  {
+    'nvim-tree/nvim-tree.lua',
+    cmd = { 'NvimTreeToggle', 'NvimTreeFocus', },
+    config = function() require'configs.nvim-tree' end,
+  },
 }
