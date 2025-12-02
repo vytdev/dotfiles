@@ -5,7 +5,6 @@
   TODO:
   - mason-org/mason-lspconfig
   - nvim-lualine/lualine.nvim
-  - akinsho/bufferline.nvim
   - nvim-tree/nvim-tree.lua
   - eero-lehtinen/oklch-color-picker.nvim
   - ui improvements

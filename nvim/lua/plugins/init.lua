@@ -22,7 +22,7 @@ return {
   -- treesitter
   {
     'nvim-treesitter/nvim-treesitter',
-    event = 'BufReadPost',
+    event = { 'BufReadPre', 'BufNewFile', },
     build = ':TSUpdate',
     config = function() require'configs.treesitter' end,
   },
@@ -85,4 +85,12 @@ return {
       disable_filetype = { 'TelescopePrompt', 'vim', },
     },
   },
+
+  -- bufferline
+  {
+    'akinsho/bufferline.nvim',
+    event = 'BufReadPost',
+    cmd = { 'BufferLineCyclePrev', 'BufferLineCycleNext', },
+    config = function() require'configs.bufferline' end,
+  }
 }

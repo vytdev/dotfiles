@@ -16,8 +16,8 @@ map('n', '<c-j>', '<c-w>j',         { desc = 'switch window down' })
 map('n', '<c-k>', '<c-w>k',         { desc = 'switch window up' })
 map('n', '<c-l>', '<c-w>l',         { desc = 'switch window right' })
 
-map('n', '<tab>', '<cmd>bn<cr>',    { desc = 'buffer next' })
-map('n', '<s-tab>', '<cmd>bp<cr>',  { desc = 'buffer previous' })
+map('n', '<tab>', '<cmd>BufferLineCycleNext<cr>', { desc = 'buffer next' })
+map('n', '<s-tab>', '<cmd>BufferLineCyclePrev<cr>', { desc = 'buffer previous' })
 map('n', '<leader>x', '<cmd>bdelete<cr>', { desc = 'buffer close' })
 
 -- nvimtree
@@ -26,9 +26,7 @@ map('n', '<leader>n', '<cmd>NvimTreeToggle<cr>', { desc = 'nvim tree focus' })
 
 -- terminal
 map('t', '<c-x>', '<c-\\><c-n>', { desc = 'terminal escape terminal mode' })
-map({ 'n', 't' }, '<a-t>', function()
-  require'terminal'.toggle()
-end, { desc = 'terminal toggle terminal' })
+map({ 'n', 't' }, '<a-t>', require'terminal'.toggle, { desc = 'terminal toggle terminal' })
 
 -- telescope
 map('n', '<leader>fw', '<cmd>Telescope live_grep<CR>', { desc = 'telescope live grep' })
