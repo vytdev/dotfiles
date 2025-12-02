@@ -3,6 +3,7 @@ require'nvim-tree'.setup{
   diagnostics = { enable = false, },
 
   renderer = {
+    root_folder_label = false,
     icons = {
       glyphs = {
         default = '󰈔',

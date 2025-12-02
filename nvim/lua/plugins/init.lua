@@ -6,7 +6,7 @@ return {
   -- colorscheme
   {
     'catppuccin/nvim',
-    name = "catppuccin",
+    name = 'catppuccin',
     priority = 1000,
     lazy = false,
     config = function() require'configs.colorscheme' end,
@@ -33,7 +33,7 @@ return {
     dependencies = {
       { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make', },
     },
-    config = function() require'telescope'.load_extension('fzf') end,
+    config = function() require'configs.telescope' end,
   },
 
   -- mason
@@ -47,7 +47,7 @@ return {
   {
     'neovim/nvim-lspconfig',
     event = { 'BufReadPost' },
-    config = function() require'configs.lspconfig'.lsp_setup() end,
+    config = function() require'configs.lspconfig' end,
   },
 
   -- autocomplete
@@ -66,7 +66,6 @@ return {
       'hrsh7th/cmp-nvim-lsp',
       'hrsh7th/cmp-nvim-lua',
       'https://codeberg.org/FelipeLema/cmp-async-path.git',
-
     },
   },
 

@@ -5,11 +5,7 @@ require'bufferline'.setup{
     separator_style = 'thin',
 
     offsets = {
-      {
-        filetype = 'NvimTree',
-        text = 'File Explorer',
-        text_align = 'center',
-      },
+      { filetype = 'NvimTree', },
     },
   },
 }
