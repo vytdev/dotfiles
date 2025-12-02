@@ -1,0 +1,14 @@
+
+  My neovim config. Took some inspiration from NvChad, which for me is the
+  best nvim starter kit. Look at https://nvchad.com
+
+  TODO:
+  - mason-org/mason-lspconfig
+  - nvim-lualine/lualine.nvim
+  - akinsho/bufferline.nvim
+  - nvim-tree/nvim-tree.lua
+  - eero-lehtinen/oklch-color-picker.nvim
+  - ui improvements
+
+  note: keep it fast
+

@@ -1,46 +1,54 @@
 return {
   defaults = { lazy = true },
-  install = { colorscheme = { 'nvchad' } },
+  install = { colorscheme = { 'onedark' } },
 
   ui = {
     icons = {
-      ft = '',
-      lazy = '󰂠 ',
-      loaded = '',
-      not_loaded = '',
+      loaded = '󰄳 ',
+      not_loaded = '󰄰 ',
     },
   },
 
   performance = {
     rtp = {
       disabled_plugins = {
-        '2html_plugin',
-        'tohtml',
-        'getscript',
-        'getscriptPlugin',
-        'gzip',
-        'logipat',
         'netrw',
         'netrwPlugin',
         'netrwSettings',
         'netrwFileHandlers',
-        'matchit',
-        'tar',
-        'tarPlugin',
-        'rrhelper',
-        'spellfile_plugin',
-        'vimball',
-        'vimballPlugin',
+
+        'gzip',
         'zip',
         'zipPlugin',
-        'tutor',
-        'rplugin',
+        'tar',
+        'tarPlugin',
+
+        'vimball',
+        'vimballPlugin',
+
+        'matchit',
+        'matchparen',
+
         'syntax',
         'synmenu',
+        'ftplugin',
+
+        '2html_plugin',
+        'tohtml',
+
+        'tutor',
+        'tutor_mode_plugin',
+
+        'getscript',
+        'getscriptPlugin',
+        'rplugin',
+
+        'logipat',
+        'rrhelper',
+        'spellfile_plugin',
         'optwin',
         'compiler',
         'bugreport',
-        'ftplugin',
       },
     },
   },

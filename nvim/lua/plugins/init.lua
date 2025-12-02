@@ -1,37 +1,88 @@
 return {
+
+  'nvim-lua/plenary.nvim',
+  'nvim-tree/nvim-web-devicons',
+
+  -- colorscheme
   {
-    'stevearc/conform.nvim',
-    -- event = 'BufWritePre', -- uncomment for format on save
-    opts = require 'configs.conform',
+    'navarasu/onedark.nvim',
+    priority = 1000,
+    lazy = false,
+    config = function()
+      require'onedark'.setup{
+        style = 'warmer',
+        code_style = {
+          comments = 'none',
+        },
+      }
+      require'onedark'.load()
+    end,
   },
 
-  -- test new blink
-  -- { import = 'nvchad.blink.lazyspec' },
-
-  -- syntax highlighting for what i usually use
+  -- treesitter
   {
     'nvim-treesitter/nvim-treesitter',
-    opts = {
-      ensure_installed = {
-        'vim', 'vimdoc', 'lua', 'python', 'javascript', 'typescript',
-        'html', 'css', 'bash', 'json', 'yaml', 'c', 'cpp', 'markdown',
+    event = 'BufReadPost',
+    build = ':TSUpdate',
+    config = function() require'configs.treesitter' end,
+  },
+
+  -- which-key
+  {
+    'folke/which-key.nvim',
+    event = 'VeryLazy',
+  },
+
+  -- telescope
+  {
+    'nvim-telescope/telescope.nvim',
+    cmd = 'Telescope',
+    dependencies = {
+      { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make', },
+    },
+    config = function() require'telescope'.load_extension('fzf') end,
+  },
+
+  -- mason
+  {
+    'mason-org/mason.nvim',
+    cmd = { 'Mason', 'MasonInstall', 'MasonUpdate', },
+    opts = {},
+  },
+
+  -- lsp
+  {
+    'neovim/nvim-lspconfig',
+    event = { 'BufReadPost' },
+    config = function() require'configs.lspconfig'.lsp_setup() end,
+  },
+
+  -- autocomplete
+  {
+    'hrsh7th/nvim-cmp',
+    event = 'InsertEnter',
+    config = function() require'configs.cmp' end,
+    dependencies = {
+      {
+        'L3MON4D3/LuaSnip',
+        version = 'v2.*',
+        dependencies = { 'rafamadriz/friendly-snippets', },
       },
-      highlight = {
-        enable = true,
-        additional_vim_regex_highlighting = false,
-      },
-      indent = {
-        enable = true,
-      }
+      'saadparwaiz1/cmp_luasnip',
+      'hrsh7th/cmp-buffer',
+      'hrsh7th/cmp-nvim-lsp',
+      'hrsh7th/cmp-nvim-lua',
+      'https://codeberg.org/FelipeLema/cmp-async-path.git',
+
     },
   },
 
-  -- configure lsp
-  -- see: ../configs/lspconfig.lua
+  -- autopairs [](){}
   {
-    'neovim/nvim-lspconfig',
-    config = function()
-      require 'configs.lspconfig'
-    end,
+    'windwp/nvim-autopairs',
+    event = 'InsertEnter',
+    opts = {
+      disable_filetype = { 'TelescopePrompt', 'vim', },
+    },
   },
 }
