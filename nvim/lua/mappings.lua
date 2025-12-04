@@ -22,9 +22,7 @@ map('n', '<tab>', '<cmd>BufferLineCycleNext<cr>', { desc = 'buffer next' })
 map('n', '<s-tab>', '<cmd>BufferLineCyclePrev<cr>', { desc = 'buffer previous' })
 map('n', '<leader>x', function()
   local bufnr = vim.api.nvim_get_current_buf()
-  if vim.fn.len(vim.fn.getbufinfo({ buflisted = 1 })) == 1 then
-    vim.cmd('enew')
-  else
+  if vim.fn.len(vim.fn.getbufinfo({ buflisted = 1 })) > 1 then
     vim.cmd('BufferLineCyclePrev')
   end
   vim.cmd('bd ' .. bufnr)
