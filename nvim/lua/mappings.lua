@@ -3,7 +3,7 @@
 local map = vim.keymap.set
 
 map('i', 'jk', '<esc>')
-map('n', ';', ':')
+map('n', ';', ':',                  { desc = 'enter command mode' })
 map('n', '<esc>', '<cmd>noh<cr>',   { desc = 'clear highlights' })
 
 map('i', '<c-b>', '<esc>^i',        { desc = 'move beginning of line' })

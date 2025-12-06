@@ -8,4 +8,7 @@ require'bufferline'.setup{
       { filetype = 'NvimTree', },
     },
   },
+
+  -- catppuccin integration
+  highlights = require'catppuccin.special.bufferline'.get_theme(),
 }

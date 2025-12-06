@@ -1,12 +1,20 @@
 require'catppuccin'.setup{
   flavour = 'mocha',
+  no_italic = true,    -- italics don't look great
 
-  styles = {
-    comments = {},
-    conditionals = {},
+  default_integrations = false,
+  auto_integrations = false,
+
+  integrations = {
+    cmp = true,
+    mason = true,
+    nvimtree = true,
+    telescope = { enabled = true, },
+    which_key = true,
+    -- see:
+    -- - nvim/lua/configs/bufferline.lua
+    -- - nvim/lua/configs/lualine.lua
   },
-
-  auto_integrations = true,
 }
 
 vim.cmd.colorscheme'catppuccin'
