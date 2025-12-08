@@ -45,9 +45,8 @@ o.foldenable = true
 o.foldmethod = 'expr'
 o.foldexpr = 'nvim_treesitter#foldexpr()'
 
--- add binaries installed by mason.nvim to path
-local is_windows = vim.fn.has 'win32' ~= 0
-local sep = is_windows and '\\' or '/'
-local delim = is_windows and ';' or ':'
-vim.env.PATH = table.concat({ vim.fn.stdpath 'data', 'mason', 'bin' }, sep) ..
-                      delim .. vim.env.PATH
+-- we're gonna lazy load mason; PATH won't get updated earlier
+local mason_bin = vim.fn.stdpath('data') .. '/mason/bin'
+if vim.fn.isdirectory(mason_bin) then
+  vim.env.PATH = mason_bin .. ':' .. vim.env.PATH
+end
