@@ -1,5 +1,4 @@
 require'nvim-tree'.setup{
-  git = { enable = false, },
   diagnostics = { enable = false, },
 
   renderer = {
@@ -17,6 +16,10 @@ require'nvim-tree'.setup{
           empty_open = '󰷏',
           symlink = '󱧮',
         },
+      },
+      -- hide git status icons
+      show = {
+        git = false,
       },
     },
   },
