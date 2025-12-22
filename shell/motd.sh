@@ -10,27 +10,26 @@ if [ ! -e "$HOME/.hushlogin" ]; then
     *) [ -n "$COLORTERM" ] && colorize=yes ;;
   esac
 
+  disk=$(df -h "$HOME" | awk 'NR==2 {printf "%s / %s (%s)\n", $3, $2, $5}')
+  ram=$(free -h | awk 'NR==2 {printf "%s / %s", $3, $2}')
+  shell=$(ps -p $$ -o comm=)
+  kernel="$(uname -s) $(uname -r)"
+
   if [ -n "$colorize" ]; then
 
     # a green-colored block
-    b='\033[38;5;10m\033[48;5;10m..\033[0m'
+    b='\033[38;5;11m\033[48;5;11m..\033[0m'
 
     # the colored message
     printf "\n"
-    printf "                    \033[1mHi, \033[32m$(whoami)\033[39m!\033[0m\n"
+    printf "                    \033[1mHi, \033[33m$USER\033[39m!\033[0m\n"
     printf "\n"
-    printf "    $b$b    $b$b    A legend once said:\n"
-    printf "    $b$b    $b$b\n"
-    printf "        $b$b          For what is a man, what has he got\n"
-    printf "      $b$b$b$b        If not himself, then he has naught\n"
-    printf "      $b    $b        To say the things he truly feels\n"
-    printf "                      And not the words of one who kneels\n"
-    printf "                      The record shows, I took the blows\n"
-    printf "                      And did it, My Way!\n"
-    printf "\n"
-    printf "                      \033[1mFrank Sinatra\033[0m\n"
-
-    unset b
+    printf "    $b$b    $b$b    \033[33mDisk:\033[0m %s\n"     "$disk"
+    printf "    $b$b    $b$b    \033[33mRAM:\033[0m %s\n"      "$ram"
+    printf "        $b$b        \033[33mKernel:\033[0m %s\n"   "$kernel"
+    printf "      $b$b$b$b      \033[33mShell:\033[0m %s\n"    "$shell"
+    printf "      $b    $b\n"
+    printf "                    \033[1mTouch grass.\033[0m\n"
 
     # print color palette
     cnt=0
@@ -44,8 +43,21 @@ if [ ! -e "$HOME/.hushlogin" ]; then
 
   # fallback to colorless text
   else
-    cat "$DOTFILES/shell/motd"
+    echo
+    echo "  Hi, $USER!"
+    echo
+    echo "  Disk: $disk"
+    echo "  RAM: $ram"
+    echo "  Kernel: $kernel"
+    echo "  Shell: $shell"
+    echo
+    echo "  Touch grass."
+    echo
   fi
 
+  unset disk
+  unset ram
+  unset shell
+  unset kernel
   unset colorize
 fi
