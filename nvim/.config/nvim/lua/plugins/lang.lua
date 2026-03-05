@@ -27,12 +27,6 @@ return {
     event = 'InsertEnter',
     config = function() require'configs.cmp' end,
     dependencies = {
-      {
-        'L3MON4D3/LuaSnip',
-        version = 'v2.*',
-        dependencies = { 'rafamadriz/friendly-snippets', },
-      },
-      'saadparwaiz1/cmp_luasnip',
       'hrsh7th/cmp-nvim-lsp-signature-help',
       'hrsh7th/cmp-buffer',
       'hrsh7th/cmp-nvim-lsp',
