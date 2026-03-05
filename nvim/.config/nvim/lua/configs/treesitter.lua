@@ -2,8 +2,6 @@ require'nvim-treesitter'.setup{
 
   ensure_installed = {
     'lua', 'luadoc', 'printf', 'vim', 'vimdoc', 'query',
-    'markdown', 'markdown_inline', 'html', 'css', 'json', 'yaml',
-    'bash', 'python', 'c', 'cpp', 'javascript', 'typescript',
   },
 
   auto_install = true,

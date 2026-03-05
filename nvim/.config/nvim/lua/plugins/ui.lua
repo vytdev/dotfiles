@@ -7,16 +7,6 @@ return {
     event = 'VeryLazy',
   },
 
-  -- telescope
-  {
-    'nvim-telescope/telescope.nvim',
-    cmd = 'Telescope',
-    dependencies = {
-      { 'nvim-telescope/telescope-fzf-native.nvim', build = 'make', },
-    },
-    config = function() require'configs.telescope' end,
-  },
-
   -- bufferline
   {
     'akinsho/bufferline.nvim',

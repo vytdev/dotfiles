@@ -5,7 +5,7 @@ require'lualine'.setup{
     globalstatus = true,
     component_separators = '',
     section_separators = '',
-    ignore_focus = { 'TelescopePrompt', 'NvimTree', },
+    ignore_focus = { 'NvimTree', },
   },
 
   sections = {

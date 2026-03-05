@@ -9,7 +9,6 @@ require'catppuccin'.setup{
     cmp = true,
     mason = true,
     nvimtree = true,
-    telescope = { enabled = true, },
     which_key = true,
     -- see:
     -- - nvim/lua/configs/bufferline.lua
