@@ -5,6 +5,23 @@ require'catppuccin'.setup{
   default_integrations = false,
   auto_integrations = false,
 
+  custom_highlights = function(cp)
+    return {
+      CmpPmenu = { bg = cp.base },
+      CmpDoc = { bg = cp.base },
+      CmpBorder = { fg = cp.surface1, bg = 'none' },
+      CmpSel = { fg = cp.mantle, bg = cp.mauve },
+    }
+  end,
+
+  color_overrides = {
+    mocha = {
+      base = '#151515',
+      mantle = '#1a1a1a',
+      crust = '#202020',
+    }
+  },
+
   integrations = {
     cmp = true,
     mason = true,
@@ -13,18 +30,7 @@ require'catppuccin'.setup{
     -- see:
     -- - nvim/lua/configs/bufferline.lua
     -- - nvim/lua/configs/lualine.lua
-  },
+  }
 }
 
 vim.cmd.colorscheme'catppuccin'
-
-
--- custom highlight groups
-local hl = vim.api.nvim_set_hl
-local cp = require'catppuccin.palettes'.get_palette()
-
--- auto completion styles
-hl(0, 'CmpPmenu', { bg = cp.base })
-hl(0, 'CmpDoc', { bg = cp.base })
-hl(0, 'CmpBorder', { fg = cp.surface1, bg = 'none', })
-hl(0, 'CmpSel', { fg = cp.mantle, bg = cp.mauve })
