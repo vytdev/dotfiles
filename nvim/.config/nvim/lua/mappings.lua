@@ -3,28 +3,23 @@
 local map = vim.keymap.set
 
 map('i', 'jk', '<esc>')
-map('n', ';', ':',                  { desc = 'enter command mode' })
-map('n', '<esc>', '<cmd>noh<cr>',   { desc = 'clear highlights' })
+map('n', ';', ':')
+map('n', '<esc>', '<cmd>noh<cr>')
 
 -- window nav
-map('n', '<c-h>', '<c-w>h',         { desc = 'switch window left' })
-map('n', '<c-j>', '<c-w>j',         { desc = 'switch window down' })
-map('n', '<c-k>', '<c-w>k',         { desc = 'switch window up' })
-map('n', '<c-l>', '<c-w>l',         { desc = 'switch window right' })
+map('n', '<c-h>', '<c-w>h', { desc = 'switch window left' })
+map('n', '<c-j>', '<c-w>j', { desc = 'switch window down' })
+map('n', '<c-k>', '<c-w>k', { desc = 'switch window up' })
+map('n', '<c-l>', '<c-w>l', { desc = 'switch window right' })
 
 -- nvim-tree
-map('n', '<c-n>',     '<cmd>NvimTreeToggle<cr>', { desc = 'nvim-tree toggle' })
+map('n', '<c-n>', '<cmd>NvimTreeToggle<cr>', { desc = 'nvim-tree toggle' })
 
 -- terminal
 map('t', '<c-x>', '<c-\\><c-n>', { desc = 'terminal escape terminal mode' })
-map({ 'n', 't' }, '<a-t>', require'terminal'.toggle, { desc = 'terminal toggle terminal' })
+map({ 'n', 't' }, '<a-t>', require'terminal'.toggle,
+    { desc = 'terminal toggle terminal' })
 
 -- color picker
 map('n', '<leader>cp', '<cmd>CccPick<cr>',     { desc = 'color pick' })
 map('n', '<leader>cc', '<cmd>CccConvert<cr>',  { desc = 'color convert' })
-
--- whichkey
-map('n', '<leader>wK', '<cmd>WhichKey<cr>', { desc = 'whichkey all keymaps' })
-map('n', '<leader>wk', function()
-  vim.cmd('WhichKey ' .. vim.fn.input 'WhichKey: ')
-end, { desc = 'whichkey find key' })

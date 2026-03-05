@@ -1,12 +1,6 @@
 return {
   'nvim-tree/nvim-web-devicons',
 
-  -- which-key
-  {
-    'folke/which-key.nvim',
-    event = 'VeryLazy',
-  },
-
   -- custom status line
   {
     'nvim-lualine/lualine.nvim',

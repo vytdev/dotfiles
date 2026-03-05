@@ -37,7 +37,7 @@ function M.toggle()
     vim.cmd('terminal ' .. vim.o.shell)
     M.buf = vim.api.nvim_get_current_buf()
     vim.api.nvim_buf_set_name(M.buf, 'Terminal') -- term://...????
-    vim.bo[M.buf].buflisted = false -- hide from bufferline
+    vim.bo[M.buf].buflisted = false
   end
 
   vim.cmd('startinsert')

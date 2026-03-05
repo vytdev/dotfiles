@@ -26,7 +26,6 @@ require'catppuccin'.setup{
     cmp = true,
     mason = true,
     nvimtree = true,
-    which_key = true,
     -- see:
     -- - nvim/lua/configs/lualine.lua
   }
