@@ -28,7 +28,6 @@ require'catppuccin'.setup{
     nvimtree = true,
     which_key = true,
     -- see:
-    -- - nvim/lua/configs/bufferline.lua
     -- - nvim/lua/configs/lualine.lua
   }
 }

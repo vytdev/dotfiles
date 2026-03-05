@@ -12,19 +12,8 @@ map('n', '<c-j>', '<c-w>j',         { desc = 'switch window down' })
 map('n', '<c-k>', '<c-w>k',         { desc = 'switch window up' })
 map('n', '<c-l>', '<c-w>l',         { desc = 'switch window right' })
 
--- buffer nav
-map('n', '<tab>', '<cmd>BufferLineCycleNext<cr>', { desc = 'buffer next' })
-map('n', '<s-tab>', '<cmd>BufferLineCyclePrev<cr>', { desc = 'buffer previous' })
-map('n', '<leader>x', function()
-  local bufnr = vim.api.nvim_get_current_buf()
-  if vim.fn.len(vim.fn.getbufinfo({ buflisted = 1 })) > 1 then
-    vim.cmd('BufferLineCyclePrev')
-  end
-  vim.cmd('bd ' .. bufnr)
-end, { desc = 'buffer close' })
-
 -- nvim-tree
-map('n', '<leader>n',     '<cmd>NvimTreeToggle<cr>', { desc = 'nvim-tree toggle' })
+map('n', '<c-n>',     '<cmd>NvimTreeToggle<cr>', { desc = 'nvim-tree toggle' })
 
 -- terminal
 map('t', '<c-x>', '<c-\\><c-n>', { desc = 'terminal escape terminal mode' })

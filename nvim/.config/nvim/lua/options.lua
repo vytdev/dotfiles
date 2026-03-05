@@ -23,9 +23,9 @@ o.numberwidth = 5
 o.signcolumn = 'yes'
 
 -- other highlights
-o.colorcolumn = '80'
-o.cursorline = true
-o.cursorlineopt = 'both'
+-- o.colorcolumn = '80'
+-- o.cursorline = true
+-- o.cursorlineopt = 'both'
 
 -- search
 o.ignorecase = true
