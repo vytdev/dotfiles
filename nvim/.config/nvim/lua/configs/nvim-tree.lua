@@ -1,6 +1,10 @@
 require'nvim-tree'.setup{
   diagnostics = { enable = false, },
 
+  view = {
+    side = 'right',
+  },
+
   renderer = {
     root_folder_label = false,
     icons = {
