@@ -1,6 +1,5 @@
 return {
 
-  'nvim-lua/plenary.nvim',
   'nvim-tree/nvim-web-devicons',
 
   -- colorscheme
@@ -9,7 +8,7 @@ return {
     name = 'catppuccin',
     priority = 1000,
     lazy = false,
-    config = function() require'configs.colorscheme' end,
+    config = function() require'configs.catppuccin' end,
   },
 
   -- custom status line
@@ -32,13 +31,6 @@ return {
     event = { 'BufReadPre', 'BufNewFile', },
     build = ':TSUpdate',
     config = function() require'configs.treesitter' end,
-  },
-
-  -- mason
-  {
-    'mason-org/mason.nvim',
-    cmd = { 'Mason', 'MasonInstall', 'MasonUpdate', },
-    opts = {},
   },
 
   -- lsp

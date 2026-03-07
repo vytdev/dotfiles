@@ -44,9 +44,3 @@ o.foldlevelstart = 99
 o.foldenable = true
 o.foldmethod = 'expr'
 o.foldexpr = 'nvim_treesitter#foldexpr()'
-
--- we're gonna lazy load mason; PATH won't get updated earlier
-local mason_bin = vim.fn.stdpath('data') .. '/mason/bin'
-if vim.fn.isdirectory(mason_bin) then
-  vim.env.PATH = mason_bin .. ':' .. vim.env.PATH
-end
