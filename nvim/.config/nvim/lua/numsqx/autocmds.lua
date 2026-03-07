@@ -21,8 +21,3 @@ vim.api.nvim_create_autocmd('BufReadPost', {
 
   end
 })
-
--- setup lsp
-vim.api.nvim_create_autocmd('BufReadPost', {
-  callback = function() require 'numsqx.lsp' end
-})

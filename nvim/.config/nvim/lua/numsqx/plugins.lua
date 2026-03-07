@@ -1,6 +1,14 @@
 return {
 
+  -- icon library
   'nvim-tree/nvim-web-devicons',
+
+  -- default lsp configs
+  {
+    'neovim/nvim-lspconfig',
+    event = 'BufReadPost',
+    config = function() require'numsqx.lsp' end,
+  },
 
   -- colorscheme
   {
