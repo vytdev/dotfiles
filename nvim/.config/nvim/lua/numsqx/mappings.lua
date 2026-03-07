@@ -1,4 +1,4 @@
--- heavily inspired by nvchad's defaults!
+-- inspired by nvchad's defaults!
 
 local map = vim.keymap.set
 
@@ -17,7 +17,7 @@ map('n', '<c-n>', '<cmd>NvimTreeToggle<cr>', { desc = 'nvim-tree toggle' })
 
 -- terminal
 map('t', '<c-x>', '<c-\\><c-n>', { desc = 'terminal escape terminal mode' })
-map({ 'n', 't' }, '<a-t>', require'terminal'.toggle,
+map({ 'n', 't' }, '<a-t>', require'numsqx.terminal'.toggle,
     { desc = 'terminal toggle terminal' })
 
 -- color picker

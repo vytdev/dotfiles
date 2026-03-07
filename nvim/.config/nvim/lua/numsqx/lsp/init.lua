@@ -36,16 +36,5 @@ vim.lsp.config('*', {
   on_attach = on_attach,
 })
 
--- use system-wide clangd installation
-vim.lsp.config('clangd', {
-  cmd = {
-    'clangd', '--clang-tidy', '--completion-style=detailed',
-    '--header-insertion=never',
-  }
-})
-
--- enable the lang servers
-vim.lsp.enable{
-  'html', 'cssls', 'lua_ls', 'pyright',
-  'ts_ls', 'bashls', 'clangd',
-}
+-- load ls-specific configs
+require'numsqx.lsp.clangd'

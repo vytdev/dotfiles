@@ -1,4 +1,6 @@
-require'catppuccin'.setup{
+local catppuccin = require'catppuccin'
+
+catppuccin.setup{
   flavour = 'mocha',
   no_italic = true,    -- italics don't look great
 

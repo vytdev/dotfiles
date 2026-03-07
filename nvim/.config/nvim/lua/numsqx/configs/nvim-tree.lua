@@ -1,4 +1,6 @@
-require'nvim-tree'.setup{
+local nvimtree = require'nvim-tree'
+
+nvimtree.setup{
   diagnostics = { enable = false, },
 
   sort = {

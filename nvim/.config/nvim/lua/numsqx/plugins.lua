@@ -8,21 +8,21 @@ return {
     name = 'catppuccin',
     priority = 1000,
     lazy = false,
-    config = function() require'configs.catppuccin' end,
+    config = function() require'numsqx.configs.catppuccin' end,
   },
 
   -- custom status line
   {
     'nvim-lualine/lualine.nvim',
     event = 'UIEnter',
-    config = function() require'configs.lualine' end,
+    config = function() require'numsqx.configs.lualine' end,
   },
 
   -- nvim-tree
   {
     'nvim-tree/nvim-tree.lua',
     cmd = { 'NvimTreeToggle', 'NvimTreeFocus', },
-    config = function() require'configs.nvim-tree' end,
+    config = function() require'numsqx.configs.nvim-tree' end,
   },
 
   -- treesitter
@@ -30,21 +30,14 @@ return {
     'nvim-treesitter/nvim-treesitter',
     event = { 'BufReadPre', 'BufNewFile', },
     build = ':TSUpdate',
-    config = function() require'configs.treesitter' end,
-  },
-
-  -- lsp
-  {
-    'neovim/nvim-lspconfig',
-    event = { 'BufReadPost' },
-    config = function() require'configs.lspconfig' end,
+    config = function() require'numsqx.configs.treesitter' end,
   },
 
   -- autocomplete
   {
     'hrsh7th/nvim-cmp',
     event = 'InsertEnter',
-    config = function() require'configs.cmp' end,
+    config = function() require'numsqx.configs.cmp' end,
     dependencies = {
       'hrsh7th/cmp-nvim-lsp-signature-help',
       'hrsh7th/cmp-buffer',

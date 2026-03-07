@@ -1,4 +1,6 @@
-require'nvim-treesitter'.setup{
+local treesitter = require'nvim-treesitter'
+
+treesitter.setup{
   ensure_installed = {
     'lua', 'luadoc', 'printf', 'vim', 'vimdoc', 'query',
   },

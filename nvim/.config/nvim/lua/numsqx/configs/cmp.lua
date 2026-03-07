@@ -93,5 +93,5 @@ cmp.setup{
           vim_item.kind)
       return vim_item
     end,
-  },
+  }
 }
