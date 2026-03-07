@@ -60,19 +60,7 @@ return {
     'windwp/nvim-autopairs',
     event = 'InsertEnter',
     opts = {
-      disable_filetype = { 'vim', },
-    }
-  },
-
-  -- color picker
-  {
-    'uga-rosa/ccc.nvim',
-    event = { 'BufReadPre', 'BufNewFile', },
-    opts = {
-      highlighter = {
-        auto_enable = true,
-        lsp = true,
-      }
+      disable_filetype = { 'vim' },
     }
   }
 }

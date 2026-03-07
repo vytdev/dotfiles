@@ -19,7 +19,3 @@ map('n', '<c-n>', '<cmd>NvimTreeToggle<cr>', { desc = 'nvim-tree toggle' })
 map('t', '<c-x>', '<c-\\><c-n>', { desc = 'terminal escape terminal mode' })
 map({ 'n', 't' }, '<a-t>', require'numsqx.terminal'.toggle,
     { desc = 'terminal toggle terminal' })
-
--- color picker
-map('n', '<leader>cp', '<cmd>CccPick<cr>',     { desc = 'color pick' })
-map('n', '<leader>cc', '<cmd>CccConvert<cr>',  { desc = 'color convert' })
