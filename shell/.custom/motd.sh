@@ -17,13 +17,11 @@ if [ ! -e "$HOME/.hushlogin" ]; then
 
     # the colored message
     printf "\n"
-    printf "  $b$b$b$b$b$b$b$b  \033[1mHi, \033[33m$USER\033[39m!\033[0m\n"
-    printf "  $b            $b\n"
-    printf "  $b            $b  One day, you'll see this MOTD\n"
-    printf "  $b            $b  rendered by a high-end gaming\n"
-    printf "  $b    $b$b$b  $b  PC.\n"
-    printf "  $b            $b\n"
-    printf "  $b$b$b$b$b$b$b$b  \033[1mTouch grass.\033[0m\n"
+    printf "  $b  $b  $b$b$b  \033[1mHi, \033[33m$USER\033[39m!\033[0m\n"
+    printf "  $b  $b    $b\n"
+    printf "  $b$b$b    $b    \033[1mTouch grass.\033[0m\n"
+    printf "  $b  $b    $b\n"
+    printf "  $b  $b  $b$b$b\n"
     printf "\n"
 
   # fallback to colorless text
