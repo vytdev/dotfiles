@@ -20,3 +20,6 @@ alias lt='ls -trlFh'
 alias gs='git status'
 alias gg='git log'
 alias gd='git diff'
+
+# other aliases
+alias dfa='df -ahT'
