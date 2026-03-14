@@ -14,7 +14,7 @@ done
 
 # Default values for cli opts.
 distro=archlinux
-user=vytdev
+user=numsqx
 
 # Process options.
 while [ "$#" -gt 0 ]; do
