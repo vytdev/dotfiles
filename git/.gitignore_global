@@ -1,0 +1,15 @@
+# os junk
+.DS_Store
+Thumbs.db
+Desktop.ini
+
+# editor files
+*~
+*.swp
+
+# tmp files
+*.tmp
+
+# dotenv
+.env
+.env.*

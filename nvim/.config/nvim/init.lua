@@ -1,0 +1,2 @@
+-- my config
+require'numsqx'
