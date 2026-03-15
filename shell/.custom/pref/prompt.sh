@@ -1,6 +1,9 @@
 # Custom prompt string. Too lazy to use starship.
 #
 
+# load color defs
+. ~/.custom/lib/colors.sh
+
 # always run this before PS1
 __prompt_pre() {
   __prompt_lstatus=$?
@@ -33,13 +36,13 @@ __prompt_stat() {
 
 
 # define modules
-cp_pwd="\[$cfg_blue\]\$(__prompt_pwd rel)\[$crset\]"
-cp_git="\[$cfg_red\]\$(__prompt_git '[%s]')\[$crset\]"
-cp_stat="\[$cfg_magenta\]\$(__prompt_stat '!%s')\[$crset\]"
-cp_mode="\[$cfg_cyan\]\$(__prompt_mode)\[$crset\]"
+cp_pwd="\[${cfg_blue}\]\$(__prompt_pwd rel)\[${crset}\]"
+cp_git="\[${cfg_yellow}\]\$(__prompt_git '[%s]')\[${crset}\]"
+cp_stat="\[${cfg_red}\]\$(__prompt_stat '!%s')\[${crset}\]"
+cp_mode="\[${cfg_cyan}\]\$(__prompt_mode)\[${crset}\]"
 
-cp_main=" $cp_pwd$cp_git$cp_stat$cp_mode "
+cp_main=" ${cp_pwd}${cp_git}${cp_stat}${cp_mode} "
 
-# don't change this line
+# don't change these line
 PROMPT_COMMAND='__prompt_pre'
-PS1="\[$crset\]$cp_main\[$crset\]"
+PS1="\[${crset}\]${cp_main}\[${crset}\]"

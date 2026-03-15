@@ -23,3 +23,9 @@ alias gd='git diff'
 
 # other aliases
 alias dfa='df -ahT'
+
+# func aliases
+mkcd() {
+  mkdir -p "$1" &&
+    cd "$1"
+}
