@@ -2,8 +2,6 @@ local lualine = require'lualine'
 
 lualine.setup{
   options = {
-    theme = 'catppuccin', -- catppuccin integration
-
     globalstatus = true,
     component_separators = '',
     section_separators = '',
