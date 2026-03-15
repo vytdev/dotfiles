@@ -1,18 +1,45 @@
-# Setup custom prompt string
+# Custom prompt string. Too lazy to use starship.
 #
 
-# check support for ansi colors
-case "$TERM" in
-  *color*|xterm*|screen*|tmux*|vt100*) colorize=yes ;;
-  *) [ -n "$COLORTERM" ] && colorize=yes ;;
-esac
+# always run this before PS1
+__prompt_pre() {
+  __prompt_lstatus=$?
+}
 
-# custom prompt
-cust_ncol='\W '
-cust_wcol='\[\033[0m\]\[\033[38;5;4m\]\W\[\033[0m\] '
+__prompt_pwd() {
+  case "$1" in
+    base) basename "$PWD";;
+    abs) echo "$PWD";;
+    rel|*) echo "${PWD/#$HOME/\~}";;
+  esac
+}
 
-[ -n "$colorize" ] && PS1="$cust_wcol" || PS1="$cust_ncol"
+__prompt_mode() {
+  [ "$UID" = 0 ] && echo "#" || echo "\$"
+}
 
-unset cust_ncol
-unset cust_wcol
-unset colorize
+__prompt_git() {
+  __fmt="$( [ $# -ge 1 ] && echo "$1" || echo '%s' )"
+  __br="$(git branch 2>/dev/null | grep '*' | sed 's/* //')"
+  [ -n "$__br" ] && printf "$__fmt" "$__br"
+  unset __br __fmt
+}
+
+__prompt_stat() {
+  __fmt="$( [ $# -ge 1 ] && echo "$1" || echo '%s' )"
+  [ "$__prompt_lstatus" -ne 0 ] && printf "$__fmt" "$__prompt_lstatus"
+  unset __fmt
+}
+
+
+# define modules
+cp_pwd="\[$cfg_blue\]\$(__prompt_pwd rel)\[$crset\]"
+cp_git="\[$cfg_red\]\$(__prompt_git '[%s]')\[$crset\]"
+cp_stat="\[$cfg_magenta\]\$(__prompt_stat '!%s')\[$crset\]"
+cp_mode="\[$cfg_cyan\]\$(__prompt_mode)\[$crset\]"
+
+cp_main=" $cp_pwd$cp_git$cp_stat$cp_mode "
+
+# don't change this line
+PROMPT_COMMAND='__prompt_pre'
+PS1="\[$crset\]$cp_main\[$crset\]"
