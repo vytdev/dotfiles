@@ -1,13 +1,6 @@
 # ANSI escapes. Assuming these are supported.
 #
 
-######################################################
-__now=$(stat -c %Y ~/.custom/lib/ansi.sh)
-if [ $__now -gt ${__custom_loaded_lib_ansi:-0} ]; then
-__custom_loaded_lib_ansi=$__now
-######################################################
-
-
 cxbegtl='\033]0;'
 cxendtl='\033\\'
 
@@ -88,8 +81,3 @@ cbg_bblue="$cb12"
 cbg_bmagenta="$cb13"
 cbg_bcyan="$cb14"
 cbg_bwhite="$cb15"
-
-
-########################################################
-fi; unset __now
-########################################################

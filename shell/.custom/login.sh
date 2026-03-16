@@ -24,4 +24,5 @@ export GIT_PAGER="$PAGER"
 export LESS='-R'
 
 # other login stuff
+[ -f ~/.custom/utils.sh ]     && . ~/.custom/utils.sh
 [ -f ~/.custom/pref/motd.sh ] && . ~/.custom/pref/motd.sh

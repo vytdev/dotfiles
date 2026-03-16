@@ -1,9 +1,6 @@
 # Custom prompt string. Too lazy to use starship.
 #
 
-# load color defs
-. ~/.custom/lib/ansi.sh
-
 # always run this before PS1
 __prompt_pre() {
   __prompt_lstatus=$?

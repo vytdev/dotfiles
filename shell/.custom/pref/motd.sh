@@ -1,9 +1,6 @@
 # Message-Of-The-Day
 #
 
-# load color defs
-. ~/.custom/lib/ansi.sh
-
 # respect .hushlogin file
 if [ ! -e "$HOME/.hushlogin" ]; then
 

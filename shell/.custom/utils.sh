@@ -1,6 +1,10 @@
 # Utilities for custom scripts
 #
 
+# load libs
+[ -f ~/.custom/lib/ansi.sh ] && . ~/.custom/lib/ansi.sh
+
+
 # run a script from ~/.custom
 crun() {
   for f in "$@"; do
