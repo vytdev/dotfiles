@@ -6,6 +6,11 @@ alias ls='ls --color=auto'
 alias dir='dir --color=auto'
 alias vdir='vdir --color=auto'
 
+# colorize grep
+alias grep='grep --color=auto'
+alias fgrep='fgrep --color=auto'
+alias egrep='egrep --color=auto'
+
 # cd aliases
 alias ..='cd ..'
 alias ...='cd ../..'
@@ -23,6 +28,7 @@ alias gd='git diff'
 
 # other aliases
 alias dfa='df -ahT'
+alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
 # func aliases
 mkcd() {

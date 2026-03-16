@@ -2,7 +2,7 @@
 #
 
 # load color defs
-. ~/.custom/lib/colors.sh
+. ~/.custom/lib/ansi.sh
 
 # respect .hushlogin file
 if [ ! -e "$HOME/.hushlogin" ]; then

@@ -2,7 +2,7 @@
 #
 
 # load color defs
-. ~/.custom/lib/colors.sh
+. ~/.custom/lib/ansi.sh
 
 # always run this before PS1
 __prompt_pre() {
@@ -42,7 +42,8 @@ cp_stat="\[${cfg_red}\]\$(__prompt_stat '!%s')\[${crset}\]"
 cp_mode="\[${cfg_cyan}\]\$(__prompt_mode)\[${crset}\]"
 
 cp_main=" ${cp_pwd}${cp_git}${cp_stat}${cp_mode} "
+cp_xtitle="\[${cxbegtl}term: \w${cxendtl}\]"
 
-# don't change these line
+# don't change the following
 PROMPT_COMMAND='__prompt_pre'
-PS1="\[${crset}\]${cp_main}\[${crset}\]"
+PS1="${cp_xtitle}\[${crset}\]${cp_main}\[${crset}\]"
