@@ -15,4 +15,6 @@ if [ ! -e "$HOME/.hushlogin" ]; then
   printf "  $b  $b    $b\n"
   printf "  $b  $b  $b$b$b\n"
   printf "\n"
+
+  unset b
 fi
