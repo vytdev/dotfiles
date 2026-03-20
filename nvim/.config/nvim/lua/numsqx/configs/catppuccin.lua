@@ -2,6 +2,7 @@ local catppuccin = require'catppuccin'
 
 catppuccin.setup{
   flavour = 'mocha',
+  transparent_background = true,
   no_italic = true,    -- italics don't look great
 
   default_integrations = false,
@@ -9,20 +10,12 @@ catppuccin.setup{
 
   custom_highlights = function(cp)
     return {
-      CmpPmenu = { bg = cp.base },
-      CmpDoc = { bg = cp.base },
+      CmpPmenu = { bg = 'none' },
+      CmpDoc = { bg = 'none' },
       CmpBorder = { fg = cp.surface1, bg = 'none' },
       CmpSel = { fg = cp.mantle, bg = cp.mauve },
     }
   end,
-
-  color_overrides = {
-    mocha = {
-      base = '#1a1e22',
-      mantle = '#1a1e22',
-      crust = '#1a1e22',
-    }
-  },
 
   integrations = {
     cmp = true,
