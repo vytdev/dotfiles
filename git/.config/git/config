@@ -3,4 +3,4 @@
 	name = Vincent Yanzee J. Tan
 	signingkey = 909BD8A3E12204F0
 [core]
-	excludesfile = /home/numsqx/.gitignore_global
+	excludesfile = /home/numsqx/.config/git/ignore
