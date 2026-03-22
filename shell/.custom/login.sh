@@ -8,8 +8,8 @@ export LANG=en_US.UTF-8
 export GNUPGHOME="$HOME/.gnupg"
 
 # additional user-defined binary paths
-[ -d "$HOME/bin" ]        && PATH="$HOME/bin:$PATH"
-[ -d "$HOME/.local/bin" ] && PATH="$HOME/.local/bin:$PATH"
+[ -d "$HOME/bin" ] && PATH="$HOME/bin:$PATH"
+#... xdg bin path is also set (see pref/xdg.sh)
 
 # editor and pager
 export EDITOR=nvim
@@ -25,4 +25,5 @@ export LESS='-R'
 
 # other login stuff
 [ -f ~/.custom/utils.sh ]     && . ~/.custom/utils.sh
+[ -f ~/.custom/pref/xdg.sh ]  && . ~/.custom/pref/xdg.sh
 [ -f ~/.custom/pref/motd.sh ] && . ~/.custom/pref/motd.sh
