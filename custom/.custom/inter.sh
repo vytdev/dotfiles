@@ -2,13 +2,13 @@
 # source from ~/.bashrc .
 #
 
+test -f ~/.custom/mgr.sh && . ~/.custom/mgr.sh || return
+
 # ignore non-interactive shells
 case $- in
   *i*) ;;
   *) return;;
 esac
-
-test -f ~/.custom/mgr.sh && . ~/.custom/mgr.sh
 
 # command history
 HISTSIZE=5000

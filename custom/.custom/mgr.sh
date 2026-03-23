@@ -1,6 +1,7 @@
-# Utilities for custom scripts
+# ~/.custom utilities. Required by inter.sh and login.sh.
 #
 
+# where .custom is installed
 export CUSTOMPREFIX=$HOME/.custom
 
 # add a path to PATH, prevent duplicates
@@ -36,6 +37,16 @@ clist() {
   done
   unset f
   unset h
+}
+
+# run each file in a folder
+crundir() {
+  if [ -d "$1" ]; then
+    for f in "$1"/*; do
+      test -x "$f" && "$f"
+    done
+    unset f
+  fi
 }
 
 # add .custom/bin to PATH
