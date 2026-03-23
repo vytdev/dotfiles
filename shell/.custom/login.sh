@@ -1,5 +1,8 @@
-# Login shells
+# Stuff ran on login. Not necessarily limited to shells. Preferrably
+# source from ~/.profile . Do not assume an interactive shell.
 #
+
+test -f ~/.custom/mgr.sh && . ~/.custom/mgr.sh
 
 # locale
 export LANG=en_US.UTF-8
@@ -8,7 +11,7 @@ export LANG=en_US.UTF-8
 export GNUPGHOME="$HOME/.gnupg"
 
 # additional user-defined binary paths
-[ -d "$HOME/bin" ] && PATH="$HOME/bin:$PATH"
+[ -d "$HOME/bin" ] && caddpath "$HOME/bin"
 #... xdg bin path is also set (see pref/xdg.sh)
 
 # editor and pager
@@ -24,6 +27,7 @@ export GIT_PAGER="$PAGER"
 export LESS='-R'
 
 # other login stuff
-[ -f ~/.custom/utils.sh ]     && . ~/.custom/utils.sh
-[ -f ~/.custom/pref/xdg.sh ]  && . ~/.custom/pref/xdg.sh
-[ -f ~/.custom/pref/motd.sh ] && . ~/.custom/pref/motd.sh
+crun xdg
+
+# Auto-start Hyprland?
+#start-hyprland

@@ -1,6 +1,8 @@
 # Custom prompt string. Too lazy to use starship.
 #
 
+crun ansi # colors and stuff
+
 # always run this before PS1
 __prompt_pre() {
   __prompt_lstatus=$?

@@ -4,6 +4,8 @@
 # respect .hushlogin file
 if [ ! -e "$HOME/.hushlogin" ]; then
 
+  crun ansi # colors and stuff
+
   # a blue-colored block
   b="${cfg_blue}${cbg_blue}##${crset}"
 
