@@ -29,14 +29,13 @@ crun() {
 
 # list all available scripts
 clist() {
-  h="$CUSTOMPREFIX/pref/"
-  for f in $(find "$h" -name '*.sh' ); do
-    f="${f#"$h"}"
+  pref="$CUSTOMPREFIX/pref"
+  for f in "$pref"/*.sh; do
+    f="${f#"$pref/"}"
     f="${f%.sh}"
     echo "$f"
   done
-  unset f
-  unset h
+  unset f pref
 }
 
 # run each file in a folder
