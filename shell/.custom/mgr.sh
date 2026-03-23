@@ -5,9 +5,9 @@ export CUSTOMPREFIX=$HOME/.custom
 
 # add a path to PATH, prevent duplicates
 caddpath() {
-  case "$PATH" in
-    "$1"|*:"$1"|"$1":*|*:"$1":*) ;; # skip if already there
-    '') PATH="$1" ;;      # don't add a colon if it's empty
+  case ":$PATH:" in
+    *:"$1":*) ;;          # skip if already there
+    '::') PATH="$1" ;;    # don't add a colon if it's empty
     *) PATH="$1:$PATH"    # prepend to PATH
   esac
 }
@@ -16,8 +16,8 @@ caddpath() {
 crun() {
   for f in "$@"; do
     f="$CUSTOMPREFIX/pref/$f.sh"
-    if [ ! -f "$f" ]; then
-      echo "crun: script not found: $f" >&2
+    if [ ! -r "$f" ]; then
+      echo "crun: script inaccessible: $f" >&2
       unset f
       return 1
     fi
