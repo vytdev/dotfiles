@@ -30,8 +30,13 @@ alias gd='git diff'
 alias dfa='df -ahT'
 alias alert='notify-send --urgency=low -i "$([ $? = 0 ] && echo terminal || echo error)" "$(history|tail -n1|sed -e '\''s/^\s*[0-9]\+\s*//;s/[;&|]\s*alert$//'\'')"'
 
-# func aliases
+# make a new dir and cd into it
 mkcd() {
   mkdir -p "$1" &&
     cd "$1"
+}
+
+# change the terminal title
+chtitle() {
+  printf "${cxbegtl}%s${cxendtl}" "$@"
 }
