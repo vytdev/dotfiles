@@ -1,1 +1,2 @@
-test -r ~/.custom/inter.sh && . ~/.custom/inter.sh
+export CUSTOMPREFIX="$HOME/.custom"
+test -r "$CUSTOMPREFIX/inter.sh" && . "$CUSTOMPREFIX/inter.sh"

@@ -2,7 +2,7 @@
 # source from ~/.profile . Do not assume an interactive shell.
 #
 
-test -r ~/.custom/mgr.sh && . ~/.custom/mgr.sh || return
+test -r "$CUSTOMPREFIX/mgr.sh" && . "$CUSTOMPREFIX/mgr.sh" || return
 
 # locale
 export LANG=en_US.UTF-8

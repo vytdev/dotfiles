@@ -2,7 +2,7 @@
 # source from ~/.bashrc .
 #
 
-test -r ~/.custom/mgr.sh && . ~/.custom/mgr.sh || return
+test -r "$CUSTOMPREFIX/mgr.sh" && . "$CUSTOMPREFIX/mgr.sh" || return
 
 # ignore non-interactive shells
 case $- in

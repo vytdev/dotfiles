@@ -2,14 +2,14 @@
 #
 
 # where .custom is installed
-export CUSTOMPREFIX=$HOME/.custom
+export CUSTOMPREFIX
 
 # add a path to PATH, prevent duplicates
 caddpath() {
   case ":$PATH:" in
     *:"$1":*) ;;          # skip if already there
     '::') PATH="$1" ;;    # don't add a colon if it's empty
-    *) PATH="$1:$PATH"    # prepend to PATH
+    *) PATH="$1:$PATH" ;; # prepend to PATH
   esac
 }
 
