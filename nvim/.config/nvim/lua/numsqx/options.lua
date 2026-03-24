@@ -44,3 +44,14 @@ o.foldlevelstart = 99
 o.foldenable = true
 o.foldmethod = 'expr'
 o.foldexpr = 'nvim_treesitter#foldexpr()'
+
+-- borders
+opt.fillchars = {
+  vert = ' ',
+  horiz = ' ',
+  vertleft = ' ',
+  vertright = ' ',
+  horizup = ' ',
+  horizdown = ' ',
+  verthoriz = ' ',
+}
