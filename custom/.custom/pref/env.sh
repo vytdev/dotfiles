@@ -12,13 +12,15 @@ export GNUPGHOME="$HOME/.gnupg"
 #... xdg bin path is also set (see pref/xdg.sh)
 
 # editor and pager
-export EDITOR=nvim
 export VISUAL=nvim
+export EDITOR=nvim
 export PAGER=less
+export LESS='-R'
 
 # git editor and pager
 export GIT_EDITOR="$EDITOR"
 export GIT_PAGER="$PAGER"
 
-# less options
-export LESS='-R'
+# set default man path
+export MANPATH
+test -z "$MANPATH" && MANPATH=$(manpath)
