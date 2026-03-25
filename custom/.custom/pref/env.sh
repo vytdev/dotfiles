@@ -1,8 +1,5 @@
-# Stuff ran on login. Not necessarily limited to shells. Preferrably
-# source from ~/.profile . Do not assume an interactive shell.
+# Login environment vars.
 #
-
-test -r "$CUSTOMPREFIX/mgr.sh" && . "$CUSTOMPREFIX/mgr.sh" || return
 
 # locale
 export LANG=en_US.UTF-8
@@ -25,9 +22,3 @@ export GIT_PAGER="$PAGER"
 
 # less options
 export LESS='-R'
-
-# other login stuff
-crun xdg
-
-# Auto-start Hyprland?
-#start-hyprland

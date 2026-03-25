@@ -1,4 +1,16 @@
 Environment customization stuff.
 
-  .profile   ->  login.sh
-  .bashrc    ->  inter.sh
+  .profile:
+  - env
+  - xdg
+
+  .bashrc:
+  - inter
+  - alias
+  - prompt
+
+usage:
+
+  CUSTOMPREFIX=~/.custom
+  . $CUSTOMPREFIX/init.sh
+  crun <script>

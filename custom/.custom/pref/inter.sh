@@ -1,8 +1,5 @@
-# Interactive shell options (might only work for bash). Preferrably
-# source from ~/.bashrc .
+# Interactive shell options (might only work for bash).
 #
-
-test -r "$CUSTOMPREFIX/mgr.sh" && . "$CUSTOMPREFIX/mgr.sh" || return
 
 # ignore non-interactive shells
 case $- in
@@ -21,12 +18,8 @@ shopt -s histappend
 export GPG_TTY=$(tty)
 
 # enable color support for ls
-if [ -x /usr/bin/dircolors ]; then
+if command -v dircolors >/dev/null 2>&1; then
   test -r $HOME/.dircolors &&
     eval "$(dircolors -b $HOME/.dircolors)" ||
     eval "$(dircolors -b)"
 fi
-
-# other interactive shell necessities
-crun alias
-crun prompt

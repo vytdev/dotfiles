@@ -1,4 +1,8 @@
-# ~/.custom utilities. Required by inter.sh and login.sh.
+# .custom utilities.
+#
+# CUSTOMPREFIX=~/.custom
+# . $CUSTOMPREFIX/init.sh
+# crun <source>
 #
 
 # where .custom is installed
