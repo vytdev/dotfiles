@@ -5,7 +5,13 @@
 # crun <source>
 #
 
-# where .custom is installed
+# make sure CUSTOMPREFIX is set first
+if [ -z "$CUSTOMPREFIX" ]; then
+  echo 'CUSTOMPREFIX not set'
+  return 1
+fi
+
+# propagate CUSTOMPREFIX to subshells
 export CUSTOMPREFIX
 
 # add a path to PATH, prevent duplicates
