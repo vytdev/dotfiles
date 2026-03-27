@@ -1,0 +1,114 @@
+/* lgtm! (by @vytdev) */
+
+{
+  "$schema": "https://github.com/fastfetch-cli/fastfetch/raw/master/doc/json_schema.json",
+
+  "display": {
+    "separator": "",
+    "key": { "width": 15 },
+
+    // uncomment if needed
+    //"showErrors": true,
+
+    "percent": {
+      "type": ["bar", "num", "num-color"]
+    },
+
+    "bar": {
+      "width": 15,
+      "char": {
+        "total": "",
+        "elapsed": ""
+      },
+      "border": {
+        "left": "",
+        "right": "",
+        "leftElapsed": "",
+        "rightElapsed": ""
+      }
+    },
+
+    "size": {
+      "ndigits": 1,
+      "binaryPrefix": "jedec"
+    },
+
+    "duration": {
+      "abbreviation": true,
+      "spaceBeforeUnit": "never"
+    },
+
+    "constants": [
+      "────────────────────────────────────────────────────────", // border
+      "\u001b[56D" // jump back to start of the border
+    ]
+  },
+
+  "modules": [
+    { "type": "title",    "format": "{#dim_white}┌{$1}┐{$2} {1} @ {2} " },
+
+    "break",
+
+    /* hardware and some low-level software stuff */
+    { "type": "custom",   "format": "{#red}󰈙 specs" },
+    { "type": "os",       "key": "{#red}├─ 󰣇 os" },
+    { "type": "kernel",   "key": "{#red}├─  kernel" },
+    { "type": "bootmgr",  "key": "{#red}├─  bootld" },
+    { "type": "bios",     "key": "{#red}├─  bios" },
+    { "type": "cpu",      "key": "{#red}├─  cpu" },
+    { "type": "gpu",      "key": "{#red}└─  gpu" },
+
+    "break",
+
+    /* resource usage */
+    { "type": "custom",   "format": "{#magenta}󰒋 resources" },
+    { "type": "memory",   "key": "{#magenta}├─  ram",
+      "format": "{percentage-bar} {used} / {total} ({percentage})" },
+    { "type": "swap",     "key": "{#magenta}├─  swap",
+      "format": "{percentage-bar} {used} / {total} ({percentage})" },
+    { "type": "disk",     "key": "{#magenta}└─  disk",
+      "format": "{size-percentage-bar} {size-used} / {size-total} ({size-percentage})" },
+
+    "break",
+
+    /* current stats */
+    { "type": "custom",   "format": "{#yellow}󰄪 stats" },
+    { "type": "uptime",   "key": "{#yellow}├─  uptime" },
+    { "type": "processes","key": "{#yellow}├─  procs"},
+    { "type": "loadavg",  "key": "{#yellow}├─ 󰔰 load" },
+    { "type": "localip",  "key": "{#yellow}├─  lan ip" },
+    { "type": "publicip", "key": "{#yellow}├─  wan ip" },
+    { "type": "datetime", "key": "{#yellow}└─ 󰃭 date" },
+
+    "break",
+
+    /* tools/runtimes */
+    { "type": "custom",   "format": "{#green}󱁤 tools & runtimes" },
+
+    { "type": "command",  "key": "{#green}├─  gcc", "format": "gcc {result}",
+      "text": "gcc --version | head -n1 | cut -c 11-" },
+
+    { "type": "command",  "key": "{#green}├─ 󰎙 node", "format": "node {result}",
+      "text": "node -v | cut -c 2-" },
+
+    { "type": "command",  "key": "{#green}├─  python", "format": "python {result}",
+      "text": "python -V | cut -c 8-" },
+
+    { "type": "editor",   "key": "{#green}├─  editor" },
+    { "type": "shell",    "key": "{#green}└─ 󰆍 shell" },
+
+    "break",
+
+    /* miscellaneous */
+    { "type": "custom",   "format": "{#blue}󰠱 misc" },
+    { "type": "terminal", "key": "{#blue}├─ 󰆍 term" },
+    { "type": "packages", "key": "{#blue}├─ 󰏗 pkgs" },
+    { "type": "locale",   "key": "{#blue}├─ 󰗊 locale" },
+    { "type": "colors",   "key": "{#blue}└─ 󰸌 colors",
+      "symbol": "circle" },
+
+    "break",
+
+    { "type": "custom",   "format": "{#dim_white}└{$1}┘" }
+  ]
+}

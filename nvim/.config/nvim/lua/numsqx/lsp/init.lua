@@ -39,3 +39,4 @@ vim.lsp.config('*', {
 -- load ls-specific configs
 require'numsqx.lsp.clangd'
 require'numsqx.lsp.ts_ls'
+require'numsqx.lsp.jsonls'
