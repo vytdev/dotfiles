@@ -54,4 +54,6 @@ opt.fillchars = {
   horizup = ' ',
   horizdown = ' ',
   verthoriz = ' ',
+
+  eob = ' ',
 }
