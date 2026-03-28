@@ -1,0 +1,43 @@
+#!/bin/sh
+# theme manager
+
+if [ $# -lt 1 ]; then
+  echo 'usage: themectl THEME'        >&2
+  echo '       themectl ls'           >&2
+  echo 'Changes the current theme'    >&2
+  exit 1
+fi
+
+XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-"$HOME/.config"}
+
+basedir="$XDG_CONFIG_HOME/themes"
+trgdir="$XDG_CONFIG_HOME"
+
+if [ "$1" = ls ]; then
+  for f in "$basedir"/*; do
+    test -d "$f" && echo $(basename "$f")
+  done
+  exit
+fi
+
+theme="$1"
+srcdir="$basedir/$theme"
+
+if [ ! -d "$srcdir" ]; then
+  echo "error: Theme not found: $theme" >&2
+  exit 1
+fi
+
+# helper func: update-file FILE
+update-file() {
+  echo "copying file: $1"
+  mkdir -p "$(dirname "$trgdir/$1")"
+  cp "$srcdir/$1" "$trgdir/$1"
+}
+
+# Stuff like these:
+# echo "applying theme: $theme ..."
+# update-file 'hypr/colors.conf'
+# update-file 'waybar/colors.css'
+
+echo 'There is nothing to do, yet.'

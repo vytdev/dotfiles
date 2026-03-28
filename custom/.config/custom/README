@@ -11,6 +11,6 @@ Environment customization stuff.
 
 usage:
 
-  CUSTOMPREFIX=~/.custom
+  CUSTOMPREFIX=~/.config/custom
   . $CUSTOMPREFIX/init.sh
   crun <script>
