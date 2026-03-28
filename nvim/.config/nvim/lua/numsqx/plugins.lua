@@ -26,13 +26,6 @@ return {
     config = function() require'numsqx.configs.lualine' end,
   },
 
-  -- nvim-tree
-  {
-    'nvim-tree/nvim-tree.lua',
-    cmd = { 'NvimTreeToggle', 'NvimTreeFocus', },
-    config = function() require'numsqx.configs.nvim-tree' end,
-  },
-
   -- treesitter
   {
     'nvim-treesitter/nvim-treesitter',
