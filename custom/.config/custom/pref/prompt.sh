@@ -2,10 +2,15 @@
 #
 
 crun ansi # colors and stuff
+OLDPS1="$PS1"
 
-# always run this before PS1
-__prompt_pre() {
-  __prompt_lstatus=$?
+test -n "$BASH_VERSION" && \
+  eval 'PROMPT_COMMAND+=("__prompt_preps1")'  # bash-only
+
+__prompt_preps1() {
+  LASTSTATUS=$?
+  __prompt_before
+  PS1="$(__prompt_main)\[${crset}\]"
 }
 
 __prompt_pwd() {
@@ -16,32 +21,16 @@ __prompt_pwd() {
   esac
 }
 
-__prompt_mode() {
-  [ "$UID" = 0 ] && echo "#" || echo "\$"
+# do stuff before the shell prints PS1
+__prompt_before() {
+  printf "${crset}"
 }
 
-__prompt_git() {
-  __fmt="$( [ $# -ge 1 ] && echo "$1" || echo '%s' )"
-  __br="$(git branch 2>/dev/null | grep '*' | sed 's/* //')"
-  [ -n "$__br" ] && printf "$__fmt" "$__br"
-  unset __br __fmt
+# the prompt line (requires '\[\]' for non-printables)
+__prompt_main() {
+  test "$LASTSTATUS" -eq 0  \
+    && __color="\[${cfg_green}\]" \
+    || __color="\[${cfg_red}\]"
+  printf ' %s❯ ' "$__color"
+  unset __color
 }
-
-__prompt_stat() {
-  __fmt="$( [ $# -ge 1 ] && echo "$1" || echo '%s' )"
-  [ "$__prompt_lstatus" -ne 0 ] && printf "$__fmt" "$__prompt_lstatus"
-  unset __fmt
-}
-
-
-# define modules
-cp_pwd="\[${cfg_blue}\]\$(__prompt_pwd rel)\[${crset}\]"
-cp_git="\[${cfg_yellow}\]\$(__prompt_git '[%s]')\[${crset}\]"
-cp_stat="\[${cfg_red}\]\$(__prompt_stat '!%s')\[${crset}\]"
-cp_mode="\[${cfg_cyan}\]\$(__prompt_mode)\[${crset}\]"
-
-cp_main=" ${cp_pwd}${cp_git}${cp_stat}${cp_mode} "
-
-# don't change the following
-PROMPT_COMMAND='__prompt_pre'
-PS1="\[${crset}\]${cp_main}\[${crset}\]"

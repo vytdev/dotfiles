@@ -38,5 +38,5 @@ mkcd() {
 
 # change the terminal title
 chtitle() {
-  printf "${cxbegtl}%s${cxendtl}" "$@"
+  printf "${cxbegtl}%s${cxendtl}" "$1"
 }
