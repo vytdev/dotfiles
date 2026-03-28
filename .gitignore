@@ -1,0 +1,5 @@
+.local/share
+.local/state
+.cache
+
+themes/.config/themes/current

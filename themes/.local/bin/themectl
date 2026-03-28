@@ -1,5 +1,5 @@
 #!/bin/sh
-# theme manager
+# front-facing theme manager
 
 if [ $# -lt 1 ]; then
   echo 'usage: themectl THEME'        >&2
@@ -12,10 +12,19 @@ XDG_CONFIG_HOME=${XDG_CONFIG_HOME:-"$HOME/.config"}
 
 basedir="$XDG_CONFIG_HOME/themes"
 trgdir="$XDG_CONFIG_HOME"
+currfile="$basedir/current"
 
+# list all available themes
 if [ "$1" = ls ]; then
+  current=$(cat "$currfile" 2>/dev/null)
   for f in "$basedir"/*; do
-    test -d "$f" && echo $(basename "$f")
+    test ! -d "$f" && continue
+    name=$(basename "$f")
+    # indicate whether it's the currently in-use theme
+    test "$current" = "$name" \
+        && printf ' * ' \
+        || printf '   '
+    echo "$name"
   done
   exit
 fi
@@ -23,21 +32,28 @@ fi
 theme="$1"
 srcdir="$basedir/$theme"
 
+# sanity check!
+case "$theme" in
+  *[!a-zA-Z_-]*)
+    echo "error: Special characters are not allowed" >&2
+    exit 1
+    ;;
+esac
+
 if [ ! -d "$srcdir" ]; then
   echo "error: Theme not found: $theme" >&2
+  echo 'Type "themectl ls" for a list of available themes.' >&2
   exit 1
 fi
 
+echo "applying theme: $theme ..."
+echo "$theme" > "$currfile"      # for 'themectl ls'
+
 # helper func: update-file FILE
 update-file() {
-  echo "copying file: $1"
+  echo "copying: $1"
   mkdir -p "$(dirname "$trgdir/$1")"
   cp "$srcdir/$1" "$trgdir/$1"
 }
 
-# Stuff like these:
-# echo "applying theme: $theme ..."
-# update-file 'hypr/colors.conf'
-# update-file 'waybar/colors.css'
-
-echo 'There is nothing to do, yet.'
+. "$basedir/apply-theme.sh"
