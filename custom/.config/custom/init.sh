@@ -1,6 +1,6 @@
-# .custom utilities.
+# custom utilities.
 #
-# CUSTOMPREFIX=~/.custom
+# CUSTOMPREFIX=~/.config/custom
 # . $CUSTOMPREFIX/init.sh
 # crun <source>
 #
@@ -59,4 +59,4 @@ crundir() {
 }
 
 # add .custom/bin to PATH
-caddpath "$CUSTOMPREFIX/bin"
+test -d "$CUSTOMPREFIX/bin" && caddpath "$CUSTOMPREFIX/bin"
