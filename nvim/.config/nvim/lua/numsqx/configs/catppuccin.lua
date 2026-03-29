@@ -19,7 +19,6 @@ catppuccin.setup{
 
   integrations = {
     cmp = true,
-    nvimtree = true,
   }
 }
 

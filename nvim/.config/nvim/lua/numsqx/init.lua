@@ -52,4 +52,7 @@ require'lazy'.setup({{ import = 'numsqx.plugins' }}, {
 
 require'numsqx.options'
 require'numsqx.autocmds'
-vim.schedule(function() require'numsqx.mappings' end)
+
+vim.schedule(function()
+  require'numsqx.mappings'
+end)

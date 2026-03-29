@@ -1,14 +1,6 @@
 return {
 
-  -- icon library
   'nvim-tree/nvim-web-devicons',
-
-  -- default lsp configs
-  {
-    'neovim/nvim-lspconfig',
-    event = 'BufReadPost',
-    config = function() require'numsqx.lsp' end,
-  },
 
   -- colorscheme
   {
@@ -19,11 +11,11 @@ return {
     config = function() require'numsqx.configs.catppuccin' end,
   },
 
-  -- custom status line
+  -- default lsp configs
   {
-    'nvim-lualine/lualine.nvim',
-    event = 'UIEnter',
-    config = function() require'numsqx.configs.lualine' end,
+    'neovim/nvim-lspconfig',
+    event = 'BufReadPost',
+    config = function() require'numsqx.lsp' end,
   },
 
   -- treesitter
