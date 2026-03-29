@@ -7,8 +7,12 @@
 
 # make sure CUSTOMPREFIX is set first
 if [ -z "$CUSTOMPREFIX" ]; then
-  echo 'CUSTOMPREFIX not set'
-  return 1
+  CUSTOMPREFIX="$HOME/.config/custom"   # we're here by default
+  if [ ! -r "$CUSTOMPREFIX/init.sh" ]; then
+    unset CUSTOMPREFIX
+    echo 'CUSTOMPREFIX not set'
+    return 1
+  fi
 fi
 
 # propagate CUSTOMPREFIX to subshells
