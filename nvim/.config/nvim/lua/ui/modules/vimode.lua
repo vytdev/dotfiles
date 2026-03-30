@@ -26,12 +26,6 @@ local function get_mode_info(mode)
 end
 
 
-local fg_mode = function(state) return { fg = state.mode_color } end
-local bg_mode = function(state) return { bg = state.mode_color } end
-local fg_grey = { fg = 'dark_grey' }
-local bg_grey = { bg = 'dark_grey' }
-
-
 -- ViMode component.
 M.ViMode = comp.Component:new{
   redraw = {'ModeChanged','BufEnter'},
@@ -39,11 +33,11 @@ M.ViMode = comp.Component:new{
     state.mode = vim.fn.mode(1)
     state.mode_name, state.mode_color = get_mode_info(state.mode)
   end,
-  hlbeg(fg_mode), '', hlend(1),                         -- outer-left
-  hlbeg(bg_mode), hlbeg(fg_grey), '󰣇 ', hlend(2),        -- icon
-  hlbeg(bg_grey), hlbeg(fg_mode), ' ',                  -- mid sep
-  function(state) return state.mode_name end, hlend(2),  -- mode name
-  hlbeg(fg_grey), '', hlend(1),                         -- outer-right
+
+  -- as simple as it can become
+  hlbeg(function(state) return { bg = state.mode_color, fg = 'dark_grey', bold = true } end),
+  function(state) return string.format(' 󰣇 %s ', state.mode_name) end, hlend(1),
+  hlbeg(function(state) return { fg = state.mode_color } end), ' ', hlend(1),
 }
 
 return M

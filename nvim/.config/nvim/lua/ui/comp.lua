@@ -10,12 +10,12 @@ M.Component = Component
 -- @param def The component def.
 -- @return The new instance.
 function Component:new(def)
-  local obj = setmetatable(def, Component)
+  setmetatable(def, self)
   -- register redraw rules
-  if obj.redraw then
-    obj:set_redraw(obj.redraw)
+  if def.redraw then
+    def:set_redraw(def.redraw)
   end
-  return obj
+  return def
 end
 
 

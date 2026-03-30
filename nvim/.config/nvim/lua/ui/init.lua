@@ -2,12 +2,8 @@
 local hls = require'ui.hls'
 hls.append_colors(require'ui.colors')
 
+-- statusline stuff
 local StatusLine = require'ui.modules.statusline'.StatusLine
-
-local function draw()
-  return StatusLine:render{}
-end
-
-vim.opt.statusline = '%!v:lua.require("ui").draw()'
-vim.opt.laststatus = 3
-return { draw = draw }
+function _G.__render_statusline() return StatusLine:render{} end
+vim.o.statusline = '%!v:lua.__render_statusline()'
+vim.o.laststatus = 3
