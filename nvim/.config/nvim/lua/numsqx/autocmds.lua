@@ -24,6 +24,6 @@ vim.api.nvim_create_autocmd('BufReadPost', {
 
 vim.api.nvim_create_autocmd('UIEnter', {
   callback = function()
-    require'numsqx.statusline'
+    require'numsqx.ui'
   end
 })
