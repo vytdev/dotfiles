@@ -8,14 +8,14 @@ return {
     name = 'catppuccin',
     priority = 1000,
     lazy = false,
-    config = function() require'numsqx.configs.catppuccin' end,
+    config = function() require'core.theme' end,
   },
 
   -- default lsp configs
   {
     'neovim/nvim-lspconfig',
     event = 'BufReadPost',
-    config = function() require'numsqx.lsp' end,
+    config = function() require'lang.lsp' end,
   },
 
   -- treesitter
@@ -23,14 +23,14 @@ return {
     'nvim-treesitter/nvim-treesitter',
     event = { 'BufReadPre', 'BufNewFile', },
     build = ':TSUpdate',
-    config = function() require'numsqx.configs.treesitter' end,
+    config = function() require'lang.treesitter' end,
   },
 
   -- autocomplete
   {
     'hrsh7th/nvim-cmp',
     event = 'InsertEnter',
-    config = function() require'numsqx.configs.cmp' end,
+    config = function() require'lang.autocomp' end,
     dependencies = {
       'hrsh7th/cmp-nvim-lsp-signature-help',
       'hrsh7th/cmp-buffer',

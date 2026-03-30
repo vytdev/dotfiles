@@ -1,11 +1,11 @@
 local M = {}
 
-local comp = require'numsqx.ui.comp'
-local hls = require'numsqx.ui.hls'
+local comp = require'ui.comp'
+local hls = require'ui.hls'
 local hlbeg = hls.hlbeg
 local hlend = hls.hlend
 
-local ViMode = require'numsqx.ui.modules.vimode'.ViMode
+local ViMode = require'ui.modules.vimode'.ViMode
 
 
 -- Default status line.

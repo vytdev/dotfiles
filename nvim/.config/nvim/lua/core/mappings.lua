@@ -6,6 +6,7 @@ map('i', 'jk', '<esc>')
 map('n', ';', ':')
 map('n', '<esc>', '<cmd>noh<cr>')
 
+-- terminal stuff
 map('t', '<c-x>', '<c-\\><c-n>')
 map('n', '<leader>b', function()
   vim.cmd('terminal ' .. vim.o.shell)
