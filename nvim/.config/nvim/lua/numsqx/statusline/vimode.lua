@@ -12,7 +12,7 @@ local function get_mode_info(mode)
     ['R']   = {'RPL',col.orange},
     ['t']   = {'TRM',col.yellow},
   }
-  local info = map[mode:gsub(1,1)] or {'UNK',col.grey}
+  local info = map[mode:sub(1,1)] or {'UNK',col.grey}
   return info[1], info[2]
 end
 
