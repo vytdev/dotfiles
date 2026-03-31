@@ -6,7 +6,7 @@ local utils = require'utils'
 
 -- Component class.
 -- @class Component
--- @field redraw 'always' | 'ignore' | 'static' | table
+-- @field redraw
 -- Can be:
 -- - 'always': Always redraw. (default)
 -- - 'ignore': Don't draw.
@@ -65,7 +65,7 @@ function Component:draw(state)
 
   for i, child in ipairs(self) do
     if type(child) == 'function' then child = child(state) end
-    if getmetatable(child) == Component then child = child:render(state) end
+    if type(child.render) == 'function' then child = child:render(state) end
     -- Ultimately, we want a plain string.
     ui = ui .. tostring(child)
   end
