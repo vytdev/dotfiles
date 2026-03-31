@@ -47,13 +47,13 @@ o.foldexpr = 'nvim_treesitter#foldexpr()'
 
 -- borders
 opt.fillchars = {
-  vert = ' ',
-  horiz = ' ',
-  vertleft = ' ',
-  vertright = ' ',
-  horizup = ' ',
-  horizdown = ' ',
-  verthoriz = ' ',
+  -- vert = ' ',
+  -- horiz = ' ',
+  -- vertleft = ' ',
+  -- vertright = ' ',
+  -- horizup = ' ',
+  -- horizdown = ' ',
+  -- verthoriz = ' ',
 
   eob = ' ',
 }

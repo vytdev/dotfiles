@@ -18,3 +18,6 @@ map('n', '<c-h>', '<c-w>h', { desc = 'switch window left' })
 map('n', '<c-j>', '<c-w>j', { desc = 'switch window down' })
 map('n', '<c-k>', '<c-w>k', { desc = 'switch window up' })
 map('n', '<c-l>', '<c-w>l', { desc = 'switch window right' })
+
+map('n', '<leader>h', '<cmd>split<cr>')
+map('n', '<leader>v', '<cmd>vsplit<cr>')
