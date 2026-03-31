@@ -11,7 +11,7 @@ local devicons = require'nvim-web-devicons'
 -- File name of the current buffer.
 M.FileName = comp.Component:new{
   redraw = { 'BufEnter' },
-  '%f'   -- we dont have to complicate our lives.
+  '%f '   -- we dont have to complicate our lives.
 }
 
 -- File type icon for the current buffer.
@@ -28,7 +28,6 @@ M.FileIcon = comp.Component:new{
 
 -- Whether the current buffer is modified.
 M.Modified = comp.Component:new{
-  redraw = { 'BufEnter', 'OptionSet' },
   function()
     return vim.bo[0].modified and '󰏫 ' or ''
   end
@@ -40,11 +39,6 @@ M.ReadOnly = comp.Component:new{
   function()
     return vim.bo[0].readonly and '󰌾 ' or ''
   end
-}
-
--- File name block.
-M.FileNameBlock = comp.Component:new{
-  M.FileIcon, M.FileName, ' ', M.Modified, M.ReadOnly,
 }
 
 return M

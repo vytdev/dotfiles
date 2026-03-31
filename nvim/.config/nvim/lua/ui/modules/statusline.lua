@@ -5,17 +5,20 @@ local hls = require'ui.hls'
 local hlbeg = hls.hlbeg
 local hlend = hls.hlend
 
-local ViMode        = require'ui.modules.vimode'.ViMode
-local FileNameBlock = require'ui.modules.filename'.FileNameBlock
-
+local vimode      = require'ui.modules.vimode'
+local filename    = require'ui.modules.filename'
+local diagnostics = require'ui.modules.diagnostics'
 
 -- Default status line.
 M.DefaultLine = comp.Component:new{
-  ViMode,
-  -- these are temporary
+  vimode.ViMode,
   hlbeg('Comment'),
-  FileNameBlock,
-  '%=%l,%c%V %P',
+  filename.FileIcon,
+  filename.FileName,
+  filename.Modified,
+  filename.ReadOnly, '  ',
+  diagnostics.Diagnostics,
+  '%=%l,%c%V %P', -- temporary
   hlend(1),
 }
 
