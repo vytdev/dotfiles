@@ -8,6 +8,7 @@ local hl_cnt = 0
 -- @param def The hl definition.
 -- @return The name of the hlgroup.
 function M.make_hl(def)
+  M.sub_colors(def)
   local key = vim.inspect(def)
   if hl_cache[key] then
     return hl_cache[key]
@@ -45,6 +46,15 @@ function M.sub_colors(hldef)
 end
 
 
+-- Creates an hl ref that can be used to change the current rendering hlgroup.
+-- @param hl The hl definition or an hl name.
+-- @return The hl ref.
+function M.hl(hl)
+  if type(hl) == 'string' then return '%#' .. hl .. '#' end
+  return '%#' .. M.make_hl(hl) .. '#'
+end
+
+
 -- Begins a highlight subgroup, applying proper inheritance.
 -- @param state The state object to work on.
 -- @param hl Can be an hl def, an hlgroup name string, or a function that
@@ -59,8 +69,6 @@ function M.begin_hlgrp(state, hl)
 
   info.hldef  = vim.tbl_extend('force',
       info.prev and info.prev.hldef or {}, hl)
-  M.sub_colors(info.hldef)
-
   info.hlname = M.make_hl(info.hldef)
   info.hlref  = '%#' .. info.hlname .. '#'
   return info.hlref
@@ -79,29 +87,6 @@ function M.end_hlgrp(state, cnt)
     lastref = state.hlgrp_info.hlref
   end
   return lastref or '%#StatusLine#'
-end
-
-
--- Makes a push-hl handler.
--- @param hl The hl to push.
--- @return A Component's children function.
-function M.hlbeg(hl)
-  return function(state)
-    return M.begin_hlgrp(state, hl)
-  end
-end
-
-
--- Makes a pop-hl handler.
--- @param[cnt=1] How many hls to pop.
--- @return A Component's children function.
-function M.hlend(cnt)
-  if cnt == nil then
-    cnt = 1
-  end
-  return function(state)
-    return M.end_hlgrp(state, cnt)
-  end
 end
 
 

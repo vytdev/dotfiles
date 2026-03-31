@@ -12,10 +12,6 @@ local utils = require'utils'
 -- - 'ignore': Don't draw.
 -- - 'static': Only draw once.
 -- - autocmd:  Array of event names with optional pattern/callback.
--- @field cond fun(state: table): boolean | nil
--- Optional condition whether to draw this component or not.
--- @field init fun(state: table)?
--- Optional initializer function. You can set up the state from here.
 local Component = utils.class()
 M.Component = Component
 
@@ -67,10 +63,6 @@ end
 function Component:draw(state)
   local ui = ''
 
-  -- begin hooks
-  if type(self.cond) == 'function' and not self.cond(state) then return ui end
-  if type(self.init) == 'function' then self.init(state) end
-
   for i, child in ipairs(self) do
     if type(child) == 'function' then child = child(state) end
     if getmetatable(child) == Component then child = child:render(state) end
@@ -79,24 +71,6 @@ function Component:draw(state)
   end
 
   return ui
-end
-
-
--- Set a new draw condition.
--- @param cond The condition function.
--- @return self to allow chaining.
-function Component:set_cond(cond)
-  self.cond = cond
-  return self
-end
-
-
--- Set an initializer.
--- @param fn The init function.
--- @return self to allow chaining.
-function Component:set_init(fn)
-  self.init = fn
-  return self
 end
 
 
@@ -133,6 +107,15 @@ function Component:set_redraw(rules)
     end
   })
   return self
+end
+
+
+-- Destroys this component object.
+function Component:destroy()
+  if self._curr_redraw_autocmd then
+    vim.api.nvim_del_autocmd(self._curr_redraw_autocmd)
+    self._curr_redraw_autocmd = nil
+  end
 end
 
 
