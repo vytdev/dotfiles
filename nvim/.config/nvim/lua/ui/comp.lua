@@ -1,6 +1,9 @@
 local M = {}
 
 
+local utils = require'utils'
+
+
 -- Component class.
 -- @class Component
 -- @field redraw 'always' | 'ignore' | 'static' | table
@@ -13,8 +16,7 @@ local M = {}
 -- Optional condition whether to draw this component or not.
 -- @field init fun(state: table)?
 -- Optional initializer function. You can set up the state from here.
-local Component = {}
-Component.__index = Component
+local Component = utils.class()
 M.Component = Component
 
 

@@ -1,34 +1,5 @@
 local cmp = require'cmp'
-
--- completion kind icons
--- thx: https://github.com/onsails/lspkind.nvim
-local lsp_kind = {
-  Text = '󰉿',
-  Method = '󰆧',
-  Function = '󰊕',
-  Constructor = '',
-  Field = '󰜢',
-  Variable = '󰀫',
-  Class = '󰠱',
-  Interface = '',
-  Module = '',
-  Property = '󰜢',
-  Unit = '󰑭',
-  Value = '󰎠',
-  Enum = '',
-  Keyword = '󰌋',
-  Snippet = '',
-  Color = '󰏘',
-  File = '󰈙',
-  Reference = '󰈇',
-  Folder = '󰉋',
-  EnumMember = '',
-  Constant = '󰏿',
-  Struct = '󰙅',
-  Event = '',
-  Operator = '󰆕',
-  TypeParameter = '',
-}
+local lsp_kind = require'utils.lspkind'
 
 -- setup auto completion
 cmp.setup{
