@@ -6,6 +6,8 @@ local hl = require'ui.hls'.hl
 local devicons = require'nvim-web-devicons'
 
 
+local default_hl = hl'Comment'
+
 local Align = '%='
 local Space = ' '
 
@@ -13,6 +15,21 @@ local Space = ' '
 -- File name of the current buffer.
 local FileName = comp.Component:new{
   '%f ',  -- we dont have to complicate our lives.
+}
+
+-- Currwnt help name.
+local HelpName = comp.Component:new{
+  function()
+    return vim.fn.fnamemodify(
+      vim.api.nvim_buf_get_name(0), ':t') .. ' '
+  end
+}
+
+-- File type of the current buffer.
+local FileType = comp.Component:new{
+  function()
+    return string.format('[%s]', vim.bo.filetype) .. ' '
+  end
 }
 
 -- File type icon for the current buffer.
@@ -35,7 +52,6 @@ local Modified = comp.Component:new{
 
 -- Whether the current buffer is read-only.
 local ReadOnly = comp.Component:new{
-  redraw = { 'BufEnter', 'OptionSet' },
   function()
     return vim.bo[0].readonly and '󰌾 ' or ''
   end
@@ -72,7 +88,7 @@ local ViMode = comp.Component:new{
     local hl_fg = hl{ fg = color }
 
     return string.format('%s 󰣇 %s %s %s',
-      hl_bg, name, hl_fg, hl'StatusLine')
+      hl_bg, name, hl_fg, default_hl)
   end
 }
 
@@ -122,8 +138,7 @@ local Diagnostics = comp.Component:new{
   make_diag_count('HINT'),
 }
 
-
--- Ruler
+-- Ruler.
 local Ruler = comp.Component:new{
   -- LN,COL-VCOL PERCENT% @ BUFNR
   '%l,%c%V %P @ %n'
@@ -133,8 +148,8 @@ local Ruler = comp.Component:new{
 -- Default status line.
 local DefaultLine = comp.Component:new{
   ViMode,
-  hl'Comment',
 
+  default_hl,
   FileIcon,
   FileName,
   Modified,
@@ -146,10 +161,37 @@ local DefaultLine = comp.Component:new{
   Ruler,
 }
 
+-- Other stuff.
+local OtherLine = comp.Component:new{
+  Space,        -- too close to edge
+  default_hl,
+  FileIcon,
+  HelpName,
+  FileType,
+}
+
+-- For terminal buffers.
+local TerminalLine = comp.Component:new{
+  ViMode,
+  default_hl,
+  '󰆍 Terminal',
+  Align,
+  FileName,
+}
+
 -- StatusLine component.
 local StatusLine = comp.Component:new{
   function()
     -- decide what to use in here.
+    local buftype = vim.bo[0].buftype
+
+    if buftype == 'terminal' then
+      return TerminalLine end
+
+    if buftype == 'nofile' or buftype == 'prompt' or
+       buftype == 'quickfix' or buftype == 'help'
+    then return OtherLine end
+
     return DefaultLine
   end
 }
@@ -159,7 +201,7 @@ local StatusLine = comp.Component:new{
 function M.apply()
   function _G.__render_statusline() return StatusLine:render{} end
   vim.o.statusline = '%!v:lua.__render_statusline()'
-  vim.o.laststatus = 3
+  vim.o.laststatus = 3   -- global statusline
 end
 
 

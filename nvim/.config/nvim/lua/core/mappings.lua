@@ -10,7 +10,6 @@ map('n', '<esc>', '<cmd>noh<cr>')
 map('t', '<c-x>', '<c-\\><c-n>')
 map('n', '<leader>b', function()
   vim.cmd('terminal ' .. vim.o.shell)
-  vim.api.nvim_buf_set_name(0, 'Terminal')
   vim.cmd('startinsert')
 end)
 
