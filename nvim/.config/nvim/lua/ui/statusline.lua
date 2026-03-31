@@ -1,6 +1,7 @@
 local M = {}
 
-local comp = require'ui.comp'
+
+local comp = require'ui.component'
 local hl = require'ui.hls'.hl
 
 local devicons = require'nvim-web-devicons'
@@ -204,5 +205,28 @@ function M.apply()
   vim.o.laststatus = 3   -- global statusline
 end
 
+
+-- export other stuf
+
+M.default_hl = default_hl
+
+M.Align = Align
+M.Space = Space
+
+M.FileName = FileName
+M.HelpName = HelpName
+M.FileType = FileType
+M.FileIcon = FileIcon
+M.Modified = Modified
+M.ReadOnly = ReadOnly
+M.ViMode = ViMode
+M.Diagnostics = Diagnostics
+M.Ruler = Ruler
+
+M.DefaultLine = DefaultLine
+M.OtherLine = OtherLine
+M.TerminalLine = TerminalLine
+
+M.StatusLine = StatusLine
 
 return M
