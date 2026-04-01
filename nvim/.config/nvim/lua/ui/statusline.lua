@@ -18,26 +18,10 @@ local FileName = comp.Component:new{
   '%f ',  -- we dont have to complicate our lives.
 }
 
--- Currwnt help name.
-local HelpName = comp.Component:new{
-  function()
-    return vim.fn.fnamemodify(
-      vim.api.nvim_buf_get_name(0), ':t') .. ' '
-  end
-}
-
--- File type of the current buffer.
-local FileType = comp.Component:new{
-  function()
-    return string.format('[%s]', vim.bo.filetype) .. ' '
-  end
-}
-
 -- File type icon for the current buffer.
 local FileIcon = comp.Component:new{
-  redraw = { 'BufEnter' },
-  function()
-    local fname = vim.api.nvim_buf_get_name(0)
+  function(state, dirty)
+    local fname = vim.api.nvim_buf_get_name(state.bufid)
     local ext = vim.fn.fnamemodify(fname, ':e')
     local icon, icon_hl = devicons.get_icon(fname, ext, { default = true })
     return icon .. ' '
@@ -46,15 +30,15 @@ local FileIcon = comp.Component:new{
 
 -- Whether the current buffer is modified.
 local Modified = comp.Component:new{
-  function()
-    return vim.bo[0].modified and '󰏫 ' or ''
+  function(state)
+    return vim.bo[state.bufid].modified and '󰏫 ' or ''
   end
 }
 
 -- Whether the current buffer is read-only.
 local ReadOnly = comp.Component:new{
-  function()
-    return vim.bo[0].readonly and '󰌾 ' or ''
+  function(state)
+    return vim.bo[state.bufid].readonly and '󰌾 ' or ''
   end
 }
 
@@ -80,25 +64,32 @@ end
 
 
 -- ViMode component.
+local last_vimode
 local ViMode = comp.Component:new{
   redraw = { 'ModeChanged','BufEnter' },
-  function()
-    local mode = vim.fn.mode(1)
-    local name, color = get_mode_info(mode)
-    local hl_bg = hl{ bg = color, fg = 'dark_grey', bold = true }
-    local hl_fg = hl{ fg = color }
-
-    return string.format('%s 󰣇 %s %s %s',
-      hl_bg, name, hl_fg, default_hl)
+  function(state, dirty)
+    -- hide the mode from inactive windows
+    if not state.active_win then
+      return '' end
+    if dirty then
+      local mode = vim.fn.mode(1)
+      local name, color = get_mode_info(mode)
+      local hl_bg = hl{ bg = color, fg = 'dark_grey', bold = true }
+      local hl_fg = hl{ fg = color }
+      last_vimode = string.format('%s 󰣇 %s %s %s',
+        hl_bg, name, hl_fg, default_hl)
+    end
+    return last_vimode
   end
 }
 
 
 -- Count how many diagnostics are found with severity sev.
+-- @param bufid The buffer to fetch info from.
 -- @param sev The severity number.
 -- @return The number of diagnostics.
-local function get_diag_count(sev)
-  return #vim.diagnostic.get(0, {
+local function get_diag_count(bufid, sev)
+  return #vim.diagnostic.get(bufid, {
     severity = sev
   })
 end
@@ -117,12 +108,15 @@ end
 -- @return A function.
 local function make_diag_count(sev)
   sev = vim.diagnostic.severity[sev]
-  return function()
-    local count = get_diag_count(sev)
-    if count < 1 then return '' end
-    -- lsp setup's not immediate, it's better to re-fetch
-    local icon = get_severity_icon(sev)
-    return string.format('%s%d ', icon, count)
+  return function(state, dirty)
+    if dirty then
+      local count = get_diag_count(state.bufid, sev)
+      if count < 1 then return '' end
+      -- lsp setup's not immediate, it's better to re-fetch
+      local icon = get_severity_icon(sev)
+      state['diag_' .. sev] = string.format('%s%d ', icon, count)
+    end
+    return state['diag_' .. sev] or ''
   end
 end
 
@@ -142,7 +136,22 @@ local Diagnostics = comp.Component:new{
 -- Ruler.
 local Ruler = comp.Component:new{
   -- LN,COL-VCOL PERCENT% @ BUFNR
-  '%l,%c%V %P @ %n'
+  '%l,%c%V %P',
+}
+
+-- Buffer number.
+local BufNr = comp.Component:new{
+  '@ %n',
+}
+
+-- File without the parent dir path.
+local FileBaseName = comp.Component:new{
+  '%t ',
+}
+
+-- File [type].
+local FileType = comp.Component:new{
+  '%y ',
 }
 
 
@@ -155,11 +164,14 @@ local DefaultLine = comp.Component:new{
   FileName,
   Modified,
   ReadOnly,
-  Space, Diagnostics,
+  Space,
+  Diagnostics,
 
   Align,
 
   Ruler,
+  Space,
+  BufNr,
 }
 
 -- Other stuff.
@@ -167,8 +179,12 @@ local OtherLine = comp.Component:new{
   Space,        -- too close to edge
   default_hl,
   FileIcon,
-  HelpName,
+  FileBaseName,
   FileType,
+
+  Align,
+
+  BufNr,
 }
 
 -- For terminal buffers.
@@ -176,32 +192,46 @@ local TerminalLine = comp.Component:new{
   ViMode,
   default_hl,
   '󰆍 Terminal',
+
   Align,
+
   FileName,
+  BufNr,
 }
 
 -- StatusLine component.
 local StatusLine = comp.Component:new{
-  function()
+  function(state)
     -- decide what to use in here.
-    local buftype = vim.bo[0].buftype
-
+    local buftype = vim.bo[state.bufid].buftype
     if buftype == 'terminal' then
       return TerminalLine end
-
     if buftype == 'nofile' or buftype == 'prompt' or
        buftype == 'quickfix' or buftype == 'help'
-    then return OtherLine end
-
+      then return OtherLine end
     return DefaultLine
   end
 }
 
 
+-- persistent state per window
+local win_state = {}
+
+
 -- Apply the statusline.
 function M.apply()
-  function _G.__render_statusline() return StatusLine:render{} end
+  function _G.__render_statusline()
+    local winid = vim.g.statusline_winid
+    if not win_state[winid] then
+      win_state[winid] = {}
+      win_state[winid].winid = vim.g.statusline_winid
+    end
+    win_state[winid].bufid = vim.api.nvim_win_get_buf(winid)
+    win_state[winid].active_win = winid == vim.api.nvim_get_current_win()
+    return StatusLine:render(win_state[winid])
+  end
   vim.o.statusline = '%!v:lua.__render_statusline()'
+  --vim.o.laststatus = 2   -- per-window statusline
   vim.o.laststatus = 3   -- global statusline
 end
 
@@ -214,14 +244,14 @@ M.Align = Align
 M.Space = Space
 
 M.FileName = FileName
-M.HelpName = HelpName
-M.FileType = FileType
 M.FileIcon = FileIcon
 M.Modified = Modified
 M.ReadOnly = ReadOnly
 M.ViMode = ViMode
 M.Diagnostics = Diagnostics
 M.Ruler = Ruler
+M.FileBaseName = FileBaseName
+M.FileType = FileType
 
 M.DefaultLine = DefaultLine
 M.OtherLine = OtherLine
