@@ -3,7 +3,6 @@
 local map = vim.keymap.set
 
 map('i', 'jk', '<esc>')
-map('n', ';', ':')
 map('n', '<esc>', '<cmd>noh<cr>')
 
 -- terminal stuff
