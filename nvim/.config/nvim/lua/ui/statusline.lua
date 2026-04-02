@@ -124,7 +124,7 @@ end
 -- Diagnostics stuff.
 local Diagnostics = comp.Component:new{
   redraw = {
-    'DiagnosticChanged', 'BufEnter',
+    'DiagnosticChanged', 'BufEnter', 'ModeChanged',
     callback = function() vim.cmd'redrawstatus' end,
   },
   make_diag_count('ERROR'),
