@@ -11,24 +11,11 @@ o.shell = os.getenv('SHELL') or '/usr/bin/bash'
 
 o.updatetime = 250
 o.timeoutlen = 500
-
 o.splitkeep = 'screen'
+opt.fillchars = { eob = ' ' }
 
--- search
 o.ignorecase = true
 o.smartcase = true
-
--- borders
-opt.fillchars = {
-  -- vert = ' ',
-  -- horiz = ' ',
-  -- vertleft = ' ',
-  -- vertright = ' ',
-  -- horizup = ' ',
-  -- horizdown = ' ',
-  -- verthoriz = ' ',
-  eob = ' ',
-}
 
 
 -- window-local
@@ -37,19 +24,15 @@ vim.api.nvim_create_autocmd('BufWinEnter', {
     local wo = vim.wo
     local is_file = vim.bo.buftype == ''
 
-    if is_file then
+    -- gutter stuff
+    wo.number = is_file
+    wo.relativenumber = is_file
+    wo.numberwidth = 5
+    wo.signcolumn = 'yes'
 
-      -- gutter stuff
-      wo.number = true
-      wo.relativenumber = true
-      wo.numberwidth = 5
-      wo.signcolumn = 'yes'
-
-      -- cursorline
-      wo.cursorline = true
-      wo.cursorlineopt = 'number'
-
-    end
+    -- cursorline
+    wo.cursorline = is_file
+    wo.cursorlineopt = 'number'
   end
 })
 
@@ -81,11 +64,7 @@ vim.api.nvim_create_autocmd('FileType', {
     local is_file = bo.buftype == ''
 
     local ok = pcall(vim.treesitter.start)
-    if not ok then
-      -- auto-install?
-      vim.notify('parser not found for: ' .. bo.filetype)
-      return
-    end
+    if not ok then return end
 
     -- folding
     wo.foldenable = is_file
