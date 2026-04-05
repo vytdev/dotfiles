@@ -40,3 +40,4 @@ vim.lsp.config('*', {
 require'lang.ls-clangd'
 require'lang.ls-ts_ls'
 require'lang.ls-jsonls'
+require'lang.ls-rust_analyzer'
