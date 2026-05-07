@@ -11,7 +11,7 @@
     //"showErrors": true,
 
     "percent": {
-      "type": ["bar", "num", "num-color"]
+      "type": ["bar", "num"]
     },
 
     "bar": {
@@ -25,7 +25,8 @@
         "right": "",
         "leftElapsed": "",
         "rightElapsed": ""
-      }
+      },
+      "color": null
     },
 
     "size": {
@@ -39,76 +40,73 @@
     },
 
     "constants": [
-      "────────────────────────────────────────────────────────", // border
+      "──────────────────────────────────────────────────────────", // border
       "\u001b[56D" // jump back to start of the border
     ]
   },
 
   "modules": [
-    { "type": "title",    "format": "{#dim_white}┌{$1}┐{$2} {1} @ {2} " },
+    { "type": "title",    "format": "{#dim_white}{$1}{$2} {1} @ {2} " },
 
     "break",
 
     /* hardware and some low-level software stuff */
-    { "type": "custom",   "format": "{#red}󰈙 specs" },
-    { "type": "os",       "key": "{#red}├─ 󰣇 os" },
-    { "type": "kernel",   "key": "{#red}├─  kernel" },
-    { "type": "bootmgr",  "key": "{#red}├─  bootld" },
-    { "type": "bios",     "key": "{#red}├─  bios" },
-    { "type": "cpu",      "key": "{#red}├─  cpu" },
-    { "type": "gpu",      "key": "{#red}└─  gpu" },
+    { "type": "custom",   "format": "{#dim_white}󰈙 specs" },
+    { "type": "os",       "key": "{#dim_white}󰣇 os" },
+    { "type": "kernel",   "key": "{#dim_white} kernel" },
+    { "type": "bootmgr",  "key": "{#dim_white} bootld" },
+    { "type": "bios",     "key": "{#dim_white} bios" },
+    { "type": "cpu",      "key": "{#dim_white} cpu" },
+    { "type": "gpu",      "key": "{#dim_white} gpu" },
 
     "break",
 
     /* resource usage */
-    { "type": "custom",   "format": "{#magenta}󰒋 resources" },
-    { "type": "memory",   "key": "{#magenta}├─  ram",
+    { "type": "custom",   "format": "{#dim_white}󰒋 resources" },
+    { "type": "memory",   "key": "{#dim_white} ram",
       "format": "{percentage-bar} {used} / {total} ({percentage})" },
-    { "type": "swap",     "key": "{#magenta}├─  swap",
+    { "type": "swap",     "key": "{#dim_white} swap",
       "format": "{percentage-bar} {used} / {total} ({percentage})" },
-    { "type": "disk",     "key": "{#magenta}└─  disk",
+    { "type": "disk",     "key": "{#dim_white} disk",
       "format": "{size-percentage-bar} {size-used} / {size-total} ({size-percentage})" },
 
     "break",
 
     /* current stats */
-    { "type": "custom",   "format": "{#yellow}󰄪 stats" },
-    { "type": "uptime",   "key": "{#yellow}├─  uptime" },
-    { "type": "processes","key": "{#yellow}├─  procs"},
-    { "type": "loadavg",  "key": "{#yellow}├─ 󰔰 load" },
-    { "type": "localip",  "key": "{#yellow}├─  lan ip" },
-    { "type": "publicip", "key": "{#yellow}├─  wan ip" },
-    { "type": "datetime", "key": "{#yellow}└─ 󰃭 date" },
+    { "type": "custom",   "format": "{#dim_white}󰄪 stats" },
+    { "type": "uptime",   "key": "{#dim_white} uptime" },
+    { "type": "processes","key": "{#dim_white} procs"},
+    { "type": "loadavg",  "key": "{#dim_white}󰔰 load" },
+    { "type": "localip",  "key": "{#dim_white} lan ip" },
+    { "type": "publicip", "key": "{#dim_white} wan ip" },
+    { "type": "datetime", "key": "{#dim_white}󰃭 date" },
 
     "break",
 
     /* tools/runtimes */
-    { "type": "custom",   "format": "{#green}󱁤 tools & runtimes" },
+    { "type": "custom",   "format": "{#dim_white}󱁤 tools & runtimes" },
 
-    { "type": "command",  "key": "{#green}├─  gcc", "format": "gcc {result}",
+    { "type": "command",  "key": "{#dim_white} gcc", "format": "gcc {result}",
       "text": "gcc --version | head -n1 | cut -c 11-" },
 
-    { "type": "command",  "key": "{#green}├─ 󰎙 node", "format": "node {result}",
+    { "type": "command",  "key": "{#dim_white}󰎙 node", "format": "node {result}",
       "text": "node -v | cut -c 2-" },
 
-    { "type": "command",  "key": "{#green}├─  python", "format": "python {result}",
+    { "type": "command",  "key": "{#dim_white} python", "format": "python {result}",
       "text": "python -V | cut -c 8-" },
 
-    { "type": "editor",   "key": "{#green}├─  editor" },
-    { "type": "shell",    "key": "{#green}└─ 󰆍 shell" },
+    { "type": "editor",   "key": "{#dim_white} editor" },
+    { "type": "shell",    "key": "{#dim_white}󰆍 shell" },
 
     "break",
 
     /* miscellaneous */
-    { "type": "custom",   "format": "{#blue}󰠱 misc" },
-    { "type": "terminal", "key": "{#blue}├─ 󰆍 term" },
-    { "type": "packages", "key": "{#blue}├─ 󰏗 pkgs" },
-    { "type": "locale",   "key": "{#blue}├─ 󰗊 locale" },
-    { "type": "colors",   "key": "{#blue}└─ 󰸌 colors",
-      "symbol": "circle" },
+    { "type": "custom",   "format": "{#dim_white}󰠱 misc" },
+    { "type": "terminal", "key": "{#dim_white}󰆍 term" },
+    { "type": "packages", "key": "{#dim_white}󰏗 pkgs" },
+    { "type": "locale",   "key": "{#dim_white}󰗊 locale" },
+    { "type": "colors",   "key": "{#dim_white}󰸌 colors",
+      "symbol": "circle" }
 
-    "break",
-
-    { "type": "custom",   "format": "{#dim_white}└{$1}┘" }
   ]
 }
