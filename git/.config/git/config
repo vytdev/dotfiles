@@ -1,6 +1,10 @@
 [user]
-	email = numsqx@proton.me
+	email = vytdev@gmail.com
 	name = Vincent Yanzee J. Tan
-	signingkey = 909BD8A3E12204F0
+	signingkey = 0ED9817707AA58B5!
 [core]
 	excludesfile = /home/numsqx/.config/git/ignore
+[commit]
+	gpgsign = true
+[tag]
+	gpgSign = true
