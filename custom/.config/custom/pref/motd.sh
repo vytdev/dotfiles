@@ -1,16 +1,14 @@
 # Message-Of-The-Day
 #
 
-crun ansi # colors and stuff
-
 # a blue-colored block
-b="${cfg_blue}${cbg_blue}##${crset}"
+b="\033[38;5;4m\033[48;5;4m##\033[0m"
 
 # the colored message
 printf "\n"
-printf "  $b  $b  $b$b$b  ${cbold}Hi, ${cfg_blue}$USER${cfrs}!${crset}\n"
+printf "  $b  $b  $b$b$b  \033[1mHi, \033[38;5;4m$USER\033[39m!\033[0m\n"
 printf "  $b  $b    $b\n"
-printf "  $b$b$b    $b    ${cbold}Touch grass.${crset}\n"
+printf "  $b$b$b    $b    \033[1mTouch grass.\033[0m\n"
 printf "  $b  $b    $b\n"
 printf "  $b  $b  $b$b$b\n"
 printf "\n"
