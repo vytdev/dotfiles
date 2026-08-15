@@ -1,16 +1,7 @@
 Environment customization stuff.
 
-  .profile:
-  - env
-  - xdg
+  .profile -> ~/.config/custom/login.sh
+      motd.sh*
 
-  .bashrc:
-  - inter
-  - alias
-  - prompt
-
-usage:
-
-  CUSTOMPREFIX=~/.config/custom
-  . $CUSTOMPREFIX/init.sh
-  crun <script>
+  .bashrc -> ~/.config/custom/interactive.sh
+      prompt.sh*

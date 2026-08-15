@@ -1,6 +1,3 @@
-# Message-Of-The-Day
-#
-
 # a blue-colored block
 b="\033[38;5;4m\033[48;5;4m##\033[0m"
 
