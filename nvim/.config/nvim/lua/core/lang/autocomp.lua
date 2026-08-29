@@ -1,5 +1,5 @@
 local cmp = require'cmp'
-local lsp_kind = require'utils.lspkind'
+local lsp_kind = require'core.utils'.lsp_kind
 
 -- setup auto completion
 cmp.setup{

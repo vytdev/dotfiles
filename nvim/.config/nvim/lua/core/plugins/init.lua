@@ -15,7 +15,7 @@ return {
   {
     'neovim/nvim-lspconfig',
     event = 'BufReadPost',
-    config = function() require'lang.lsp' end,
+    config = function() require'core.lang' end,
   },
 
   -- treesitter

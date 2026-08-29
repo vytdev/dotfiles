@@ -1,8 +1,8 @@
 local M = {}
 
 
-local comp = require'ui.component'
-local hl = require'ui.hls'.hl
+local comp = require'core.ui.component'
+local hl = require'core.ui.hls'.hl
 
 local devicons = require'nvim-web-devicons'
 

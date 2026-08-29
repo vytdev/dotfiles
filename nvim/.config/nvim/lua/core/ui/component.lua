@@ -1,7 +1,7 @@
 local M = {}
 
 
-local utils = require'utils'
+local utils = require'core.utils'
 
 
 -- Component class.

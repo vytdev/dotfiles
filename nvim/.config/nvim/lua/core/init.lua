@@ -13,6 +13,6 @@ end)
 vim.api.nvim_create_autocmd('UIEnter', {
   once = true,
   callback = function()
-    require'ui'
+    require'core.ui'
   end
 })

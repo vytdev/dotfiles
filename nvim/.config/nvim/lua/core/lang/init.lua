@@ -37,7 +37,7 @@ vim.lsp.config('*', {
 })
 
 -- load ls-specific configs
-require'lang.ls-clangd'
-require'lang.ls-ts_ls'
-require'lang.ls-jsonls'
-require'lang.ls-rust_analyzer'
+require'core.lang.ls-clangd'
+require'core.lang.ls-ts_ls'
+require'core.lang.ls-jsonls'
+require'core.lang.ls-rust_analyzer'
