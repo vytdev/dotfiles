@@ -30,7 +30,7 @@ return {
   {
     'hrsh7th/nvim-cmp',
     event = 'InsertEnter',
-    config = function() require'lang.autocomp' end,
+    config = function() require'core.lang.autocomp' end,
     dependencies = {
       'hrsh7th/cmp-nvim-lsp-signature-help',
       'hrsh7th/cmp-buffer',
