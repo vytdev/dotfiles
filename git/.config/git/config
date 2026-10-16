@@ -1,7 +1,7 @@
 [user]
 	email = vytdev@gmail.com
 	name = Vincent Yanzee J. Tan
-	signingkey = E2F88E4171E263C1!
+	signingkey = E6583BB5B9B4C4FA!
 [core]
 	excludesfile = /home/numsqx/.config/git/ignore
 [commit]
