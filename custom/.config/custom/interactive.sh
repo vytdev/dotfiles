@@ -11,7 +11,7 @@ esac
 HISTSIZE=5000
 HISTFILESIZE=10000
 HISTCONTROL=ignoredups:erasedups
-HISTIGNORE='ls:cd:pwd:exit:clear'
+HISTIGNORE='ls:cd:pwd:exit:clear:ll:lt:l'
 shopt -s histappend
 
 # GPG needs terminal
